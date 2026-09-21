@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colectivo Vocacional Valle del Huascarán</title>
+    <!-- Google Fonts & FontAwesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1a365d;
+            --secondary: #008080;
+            --accent: #e53e3e;
+            --light: #f7fafc;
+            --dark: #2d3748;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        /* Header & Nav */
+        header {
+            background: rgba(26, 54, 93, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .logo-brand i {
+            color: #319795;
+            font-size: 1.5rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #4fd1c5;
+        }
+
+        /* Hero Section con el Nevado Huascarán al fondo y filtro degradado */
+        .hero {
+            background: linear-gradient(rgba(26, 54, 93, 0.82), rgba(43, 108, 176, 0.82)), 
+                        url('https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;
+            color: white;
+            padding: 10rem 2rem 6rem 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            max-width: 750px;
+            margin: 0 auto 2rem auto;
+            color: #e2e8f0;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #319795;
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 4px 14px rgba(49, 151, 149, 0.4);
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #2c7a7b;
+            transform: translateY(-2px);
+        }
+
+        /* Section Global */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title p {
+            color: #718096;
+            font-size: 1.05rem;
+        }
+
+        /* Alianzas y Estudiantes */
+        .allies-section {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            margin-top: -3rem;
+            position: relative;
+            z-index: 10;
+            padding: 3rem 2rem;
+        }
+
+        .allies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .ally-card {
+            background: var(--light);
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 1.2rem 0.8rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .ally-card i {
+            font-size: 2.2rem;
+            color: var(--primary);
+        }
+
+        .ally-card span {
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--dark);
+        }
+
+        .ally-card:hover, .ally-card.active {
+            border-color: var(--secondary);
+            background: #e6fffa;
+            transform: translateY(-4px);
+            box-shadow: 0 8px 15px rgba(0,128,128,0.15);
+        }
+
+        .students-display-box {
+            background: #f0f4f8;
+            border-left: 5px solid var(--secondary);
+            padding: 2rem;
+            border-radius: 0 12px 12px 0;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .students-display-box h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .student-item {
+            background: white;
+            padding: 1rem;
+            margin-bottom: 0.8rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .student-name {
+            font-weight: 600;
+            color: var(--dark);
+            font-size: 0.95rem;
+        }
+
+        .student-career {
+            background: #e2e8f0;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        /* Sección de Sueldos Oficiales */
+        .salarios-container {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .salary-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background: #e2e8f0;
+            color: var(--dark);
+            border: none;
+            padding: 0.8rem 1.8rem;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn.active-tab {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 4px 12px rgba(26,54,93,0.3);
+        }
+
+        .search-filter-box {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            background: #f7fafc;
+            padding: 1rem;
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .search-filter-box input {
+            flex: 1;
+            min-width: 250px;
+            padding: 0.7rem 1rem;
+            border: 1px solid #cbd5e0;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            outline: none;
+        }
+
+        .search-filter-box input:focus {
+            border-color: var(--secondary);
+        }
+
+        .table-responsive {
+            max-height: 500px;
+            overflow-y: auto;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.9rem;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        th {
+            background: var(--primary);
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 2;
+        }
+
+        tr:hover {
+            background: #f1f5f9;
+        }
+
+        .salary-table-section {
+            display: none;
+        }
+
+        .salary-table-section.active-section {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+
+        /* Test Vocacional Section */
+        .test-container {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .question-box {
+            margin-bottom: 2rem;
+        }
+
+        .question-box h3 {
+            font-size: 1.15rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.8rem;
+        }
+
+        .option-btn {
+            background: var(--light);
+            border: 2px solid #e2e8f0;
+            padding: 1rem;
+            text-align: left;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            font-size: 0.95rem;
+        }
+
+        .option-btn:hover, .option-btn.selected {
+            background: #ebf8ff;
+            border-color: #3182ce;
+            color: #2b6cb0;
+        }
+
+        .test-results {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+            background: #f7fafc;
+            border-radius: 15px;
+            border: 2px dashed #319795;
+        }
+
+        .test-results h3 {
+            color: var(--secondary);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 2.5rem 2rem;
+            margin-top: 4rem;
+        }
+
+        footer p {
+            color: #cbd5e0;
+            font-size: 0.9rem;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            nav ul { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo-brand"><i class="fa-solid fa-graduation-cap"></i> Colectivo Vocacional Valle del Huascarán</a>
+            <nav>
+                <ul>
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#aliados">Instituciones Aliadas</a></li>
+                    <li><a href="#sueldos">Sueldos Oficiales</a></li>
+                    <li><a href="#test">Test Vocacional</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section con la temática del Nevado Huascarán -->
+    <section id="inicio" class="hero">
+        <h1>Construye tu Futuro con Propósito</h1>
+        <p>Iniciativa educativa impulsada y respaldada con orgullo por estudiantes universitarios, técnicos y miembros de las fuerzas armadas para guiar la vocación de los jóvenes del Valle del Huascarán.</p>
+        <a href="#test" class="btn">¡Comenzar Test Vocacional!</a>
+    </section>
+
+    <!-- Alianzas y Estudiantes Interactivos -->
+    <section id="aliados">
+        <div class="allies-section">
+            <div class="section-title">
+                <h2>Instituciones de Educación Superior y Fuerzas Armadas Aliadas</h2>
+                <p>Haz clic en cada institución para conocer a los estudiantes y miembros que forman parte de nuestro equipo:</p>
+            </div>
+
+            <div class="allies-grid">
+                <div class="ally-card" onclick="showStudents('UNI')">
+                    <i class="fa-solid fa-hard-hat"></i>
+                    <span>UNI</span>
+                </div>
+                <div class="ally-card" onclick="showStudents('UNMSM')">
+                    <i class="fa-solid fa-landmark"></i>
+                    <span>UNMSM</span>
+                </div>
+                <div class="ally-card" onclick="showStudents('UCS')">
+                    <i class="fa-solid fa-flask"></i>
+                    <span>Científica del Sur</span>
+                </div>
+                <div class="ally-card" onclick="showStudents('UCV')">
+                    <i class="fa-solid fa-book-open-reader"></i>
+                    <span>UCV</span>
+                </div>
+                <div class="ally-card" onclick="showStudents('UNASAM')">
+                    <i class="fa-solid fa-mountain-sun"></i>
+                    <span>UNASAM</span>
+                </div>
+                <div class="ally-card" onclick="showStudents('SENATI')">
+                    <i class="fa-solid fa-gears"></i>
+                    <span>SENATI</span>
+                </div>
+                <div class="ally-card" onclick="showStudents('FFAA')">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <span>Fuerzas Armadas</span>
+                </div>
+            </div>
+
+            <div id="students-container" class="students-display-box">
+                <h3>Selecciona una institución arriba para ver a los estudiantes representantes</h3>
+                <p style="color: #64748b; font-size: 0.95rem;">Cada tarjeta te mostrará qué jóvenes universitarios, técnicos o de las fuerzas armadas están listos para orientarte.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Sueldos Oficiales del Gobierno -->
+    <section id="sueldos">
+        <div class="section-title">
+            <h2>Observatorio de Sueldos Oficiales</h2>
+            <p>Consulta los ingresos promedio mensuales reportados por el Estado para tomar una decisión informada</p>
+        </div>
+
+        <div class="salarios-container">
+            <div class="salary-tabs">
+                <button class="tab-btn active-tab" onclick="switchTab('tecnicas')"><i class="fa-solid fa-gears"></i> Carreras Técnicas (Institutos)</button>
+                <button class="tab-btn" onclick="switchTab('universitarias')"><i class="fa-solid fa-graduation-cap"></i> Carreras Universitarias</button>
+            </div>
+
+            <!-- Tabla de Técnicas -->
+            <div id="sec-tecnicas" class="salary-table-section active-section">
+                <div class="search-filter-box">
+                    <h3 style="font-size: 1.1rem; color: var(--primary);">Familias de Carreras Técnicas</h3>
+                    <input type="text" id="searchTech" onkeyup="filterTable('searchTech', 'techTable')" placeholder="🔍 Buscar carrera técnica (ej. mecanica, mineria)...">
+                </div>
+                <div class="table-responsive">
+                    <table id="techTable">
+                        <thead>
+                            <tr>
+                                <th>Ranking</th>
+                                <th>Familia de Carrera Técnica</th>
+                                <th>Ingreso Prom. (18-29 años)</th>
+                                <th>Mín. a Máx. (18-29)</th>
+                                <th>Ingreso Prom. (30+ años)</th>
+                                <th>Mín. a Máx. (30+ años)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>1</td><td>TÉCNICO EN MINERA, METALURGIA Y PETRÓLEO</td><td>S/ 6 871</td><td>S/ 1,892 - S/ 12,900</td><td>S/ 9 953</td><td>S/ 3,323 - S/ 19,439</td></tr>
+                            <tr><td>2</td><td>SUBOFICIALES DE LA POLICÍA NACIONAL</td><td>S/ 3 890</td><td>S/ 3,413 - S/ 4,396</td><td>S/ 4 111</td><td>S/ 3,446 - S/ 5,004</td></tr>
+                            <tr><td>3</td><td>HIDROGRAFÍA</td><td>S/ 3 860</td><td>S/ 3,463 - S/ 4,088</td><td>S/ 4 496</td><td>S/ 3,588 - S/ 4,704</td></tr>
+                            <tr><td>4</td><td>TÉCNICO ELECTRICISTA</td><td>S/ 3 849</td><td>S/ 1,848 - S/ 5,830</td><td>S/ 6 321</td><td>S/ 2,767 - S/ 11,613</td></tr>
+                            <tr><td>5</td><td>SUBOFICIALES DE LAS FUERZAS ARMADAS</td><td>S/ 3 810</td><td>S/ 3,463 - S/ 4,363</td><td>S/ 4 532</td><td>S/ 3,588 - S/ 4,937</td></tr>
+                            <tr><td>6</td><td>SECRETARIADO</td><td>S/ 3 700</td><td>S/ 3,463 - S/ 4,238</td><td>S/ 6 021</td><td>S/ 3,623 - S/ 9,658</td></tr>
+                            <tr><td>7</td><td>TÉCNICO INDUSTRIAL</td><td>S/ 3 544</td><td>S/ 1,564 - S/ 6,613</td><td>S/ 7 169</td><td>S/ 2,874 - S/ 11,351</td></tr>
+                            <tr><td>8</td><td>QUÍMICA</td><td>S/ 3 398</td><td>S/ 1,401 - S/ 6,686</td><td>S/ 5 060</td><td>S/ 2,166 - S/ 10,033</td></tr>
+                            <tr><td>9</td><td>MECÁNICA AUTOMOTRIZ</td><td>S/ 3 300</td><td>S/ 1,800 - S/ 5,500</td><td>S/ 6 200</td><td>S/ 2,500 - S/ 11,000</td></tr>
+                            <tr><td>10</td><td>MECATRÓNICA INDUSTRIAL</td><td>S/ 3 200</td><td>S/ 1,600 - S/ 5,800</td><td>S/ 6 500</td><td>S/ 2,800 - S/ 12,500</td></tr>
+                            <tr><td>11</td><td>CIENCIAS DE LA COMPUTACIÓN</td><td>S/ 3 272</td><td>S/ 1,313 - S/ 6,200</td><td>S/ 4 526</td><td>S/ 1,754 - S/ 8,339</td></tr>
+                            <tr><td>12</td><td>TÉCNICO DE TELECOMUNICACIONES</td><td>S/ 3 153</td><td>S/ 2,246 - S/ 4,087</td><td>S/ 3 985</td><td>S/ 2,487 - S/ 4,704</td></tr>
+                            <tr><td>13</td><td>TÉCNICO ELECTRÓNICA</td><td>S/ 3 114</td><td>S/ 1,600 - S/ 4,113</td><td>S/ 4 927</td><td>S/ 2,167 - S/ 8,876</td></tr>
+                            <tr><td>14</td><td>TÉCNICO MECÁNICA (General / Industrial)</td><td>S/ 2 964</td><td>S/ 1,989 - S/ 4,084</td><td>S/ 5 490</td><td>S/ 2,487 - S/ 10,135</td></tr>
+                            <tr><td>15</td><td>ARQUITECTURA Y URBANISMO</td><td>S/ 2 856</td><td>S/ 1,387 - S/ 4,500</td><td>S/ 5 774</td><td>S/ 2,200 - S/ 9,884</td></tr>
+                            <tr><td>16</td><td>DISEÑO</td><td>S/ 2 766</td><td>S/ 1,380 - S/ 4,800</td><td>S/ 5 673</td><td>S/ 2,000 - S/ 10,912</td></tr>
+                            <tr><td>17</td><td>EDUCACIÓN SECUNDARIA</td><td>S/ 2 684</td><td>S/ 1,300 - S/ 3,851</td><td>S/ 3 861</td><td>S/ 2,040 - S/ 5,830</td></tr>
+                            <tr><td>18</td><td>TÉCNICO CIVIL</td><td>S/ 2 656</td><td>S/ 2,200 - S/ 3,501</td><td>S/ 5 478</td><td>S/ 2,719 - S/ 9,613</td></tr>
+                            <tr><td>19</td><td>MARKETING</td><td>S/ 2 577</td><td>S/ 1,200 - S/ 4,164</td><td>S/ 6 172</td><td>S/ 1,900 - S/ 13,063</td></tr>
+                            <tr><td>20</td><td>EDUCACIÓN PRIMARIA</td><td>S/ 2 511</td><td>S/ 1,130 - S/ 3,980</td><td>S/ 3 592</td><td>S/ 1,599 - S/ 5,776</td></tr>
+                            <tr><td>21</td><td>TEXTIL Y CONFECCIONES</td><td>S/ 2 496</td><td>S/ 1,130 - S/ 4,742</td><td>S/ 4 217</td><td>S/ 1,420 - S/ 7,500</td></tr>
+                            <tr><td>22</td><td>METEOROLOGÍA</td><td>S/ 2 462</td><td>S/ 2,246 - S/ 2,787</td><td>S/ 2 553</td><td>S/ 2,288 - S/ 3,027</td></tr>
+                            <tr><td>23</td><td>ADMINISTRACIÓN DE EMPRESAS</td><td>S/ 2 455</td><td>S/ 1,313 - S/ 3,783</td><td>S/ 4 505</td><td>S/ 1,813 - S/ 7,867</td></tr>
+                            <tr><td>24</td><td>CIENCIAS DE LA COMUNICACIÓN</td><td>S/ 2 443</td><td>S/ 2,213 - S/ 2,988</td><td>S/ 5 212</td><td>S/ 2,451 - S/ 9,695</td></tr>
+                            <tr><td>25</td><td>ADMINISTRACIÓN DE SERVICIOS TURÍSTICOS, HOTELERÍA Y GASTRONOMÍA</td><td>S/ 2 443</td><td>S/ 1,310 - S/ 3,716</td><td>S/ 4 379</td><td>S/ 1,713 - S/ 7,900</td></tr>
+                            <tr><td>26</td><td>AGROPECUARIA</td><td>S/ 2 421</td><td>S/ 1,500 - S/ 3,272</td><td>S/ 3 806</td><td>S/ 1,825 - S/ 6,545</td></tr>
+                            <tr><td>27</td><td>CONTABILIDAD Y FINANZAS</td><td>S/ 2 398</td><td>S/ 1,238 - S/ 4,015</td><td>S/ 3 566</td><td>S/ 1,563 - S/ 6,052</td></tr>
+                            <tr><td>28</td><td>NEGOCIOS INTERNACIONALES</td><td>S/ 2 395</td><td>S/ 1,294 - S/ 3,956</td><td>S/ 5 231</td><td>S/ 1,864 - S/ 10,181</td></tr>
+                            <tr><td>29</td><td>MÚSICA</td><td>S/ 2 377</td><td>S/ 1,470 - S/ 2,988</td><td>S/ 3 829</td><td>S/ 2,000 - S/ 8,562</td></tr>
+                            <tr><td>30</td><td>EDUCACIÓN FÍSICA</td><td>S/ 2 343</td><td>S/ 1,254 - S/ 3,501</td><td>S/ 3 497</td><td>S/ 1,785 - S/ 4,851</td></tr>
+                            <tr><td>31</td><td>ENFERMERÍA</td><td>S/ 2 315</td><td>S/ 1,211 - S/ 3,701</td><td>S/ 3 192</td><td>S/ 1,560 - S/ 4,604</td></tr>
+                            <tr><td>32</td><td>EDUCACIÓN ARTÍSTICA</td><td>S/ 2 211</td><td>S/ 1,400 - S/ 3,301</td><td>S/ 3 598</td><td>S/ 1,733 - S/ 6,234</td></tr>
+                            <tr><td>33</td><td>EDUCACIÓN INICIAL</td><td>S/ 2 172</td><td>S/ 1,130 - S/ 3,850</td><td>S/ 3 477</td><td>S/ 1,466 - S/ 5,551</td></tr>
+                            <tr><td>34</td><td>TECNOLOGÍA MÉDICA</td><td>S/ 2 103</td><td>S/ 1,200 - S/ 3,413</td><td>S/ 2 990</td><td>S/ 1,500 - S/ 4,576</td></tr>
+                            <tr><td>35</td><td>TÉCNICO EN INDUSTRIAS ALIMENTARIAS</td><td>S/ 2 023</td><td>S/ 1,130 - S/ 2,706</td><td>S/ 3 340</td><td>S/ 1,463 - S/ 5,356</td></tr>
+                            <tr><td>36</td><td>TURISMO</td><td>S/ 1 810</td><td>S/ 1,130 - S/ 2,702</td><td>S/ 3 529</td><td>S/ 1,484 - S/ 6,186</td></tr>
+                            <tr><td>37</td><td>FARMACIA Y BIOQUÍMICA</td><td>S/ 1 715</td><td>S/ 1,130 - S/ 2,346</td><td>S/ 2 570</td><td>S/ 1,393 - S/ 3,998</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Tabla de Universitarias -->
+            <div id="sec-universitarias" class="salary-table-section">
+                <div class="search-filter-box">
+                    <h3 style="font-size: 1.1rem; color: var(--primary);">Familias de Carreras Universitarias</h3>
+                    <input type="text" id="searchUni" onkeyup="filterTable('searchUni', 'uniTable')" placeholder="🔍 Buscar carrera universitaria (ej. medicina, derecho)...">
+                </div>
+                <div class="table-responsive">
+                    <table id="uniTable">
+                        <thead>
+                            <tr>
+                                <th>Ranking</th>
+                                <th>Familia de Carrera Universitaria</th>
+                                <th>Ingreso Prom. (18-29 años)</th>
+                                <th>Mín. a Máx. (18-29)</th>
+                                <th>Ingreso Prom. (30+ años)</th>
+                                <th>Mín. a Máx. (30+ años)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>1</td><td>MEDICINA</td><td>S/ 7 192</td><td>S/ 3,205 - S/ 10,043</td><td>S/ 8 472</td><td>S/ 5,000 - S/ 12,188</td></tr>
+                            <tr><td>2</td><td>ODONTOLOGÍA</td><td>S/ 4 892</td><td>S/ 1,280 - S/ 7,571</td><td>S/ 5 140</td><td>S/ 1,800 - S/ 8,523</td></tr>
+                            <tr><td>3</td><td>OBSTETRICIA</td><td>S/ 4 768</td><td>S/ 1,842 - S/ 7,288</td><td>S/ 5 408</td><td>S/ 2,727 - S/ 7,882</td></tr>
+                            <tr><td>4</td><td>INGENIERÍA DE SISTEMAS Y CÓMPUTO</td><td>S/ 4 333</td><td>S/ 1,700 - S/ 7,563</td><td>S/ 8 085</td><td>S/ 2,764 - S/ 14,113</td></tr>
+                            <tr><td>5</td><td>INGENIERÍA DE TELECOMUNICACIONES</td><td>S/ 4 236</td><td>S/ 1,800 - S/ 7,190</td><td>S/ 8 104</td><td>S/ 3,000 - S/ 14,172</td></tr>
+                            <tr><td>6</td><td>GEOLOGÍA</td><td>S/ 4 216</td><td>S/ 1,943 - S/ 6,933</td><td>S/ 10 829</td><td>S/ 3,826 - S/ 19,376</td></tr>
+                            <tr><td>7</td><td>ENFERMERÍA</td><td>S/ 4 189</td><td>S/ 1,713 - S/ 7,088</td><td>S/ 5 036</td><td>S/ 2,573 - S/ 7,838</td></tr>
+                            <tr><td>8</td><td>DERECHO</td><td>S/ 4 169</td><td>S/ 1,756 - S/ 6,955</td><td>S/ 8 635</td><td>S/ 3,165 - S/ 15,593</td></tr>
+                            <tr><td>9</td><td>INGENIERÍA MINERA, METALURGIA Y PETRÓLEO</td><td>S/ 4 118</td><td>S/ 1,729 - S/ 7,409</td><td>S/ 10 454</td><td>S/ 3,398 - S/ 18,692</td></tr>
+                            <tr><td>10</td><td>CIENCIAS DE LA COMPUTACIÓN</td><td>S/ 4 115</td><td>S/ 1,700 - S/ 7,350</td><td>S/ 8 067</td><td>S/ 2,561 - S/ 15,113</td></tr>
+                            <tr><td>11</td><td>INGENIERÍA ELÉCTRICA</td><td>S/ 4 060</td><td>S/ 1,800 - S/ 6,609</td><td>S/ 9 251</td><td>S/ 3,000 - S/ 16,610</td></tr>
+                            <tr><td>12</td><td>NUTRICIÓN</td><td>S/ 4 042</td><td>S/ 1,584 - S/ 7,113</td><td>S/ 5 261</td><td>S/ 2,454 - S/ 8,723</td></tr>
+                            <tr><td>13</td><td>INGENIERÍA MECÁNICA</td><td>S/ 4 041</td><td>S/ 1,740 - S/ 6,885</td><td>S/ 9 716</td><td>S/ 3,113 - S/ 18,113</td></tr>
+                            <tr><td>14</td><td>ECONOMÍA</td><td>S/ 4 018</td><td>S/ 1,500 - S/ 7,300</td><td>S/ 9 587</td><td>S/ 2,513 - S/ 18,449</td></tr>
+                            <tr><td>15</td><td>OFICIALES DE LA POLICÍA NACIONAL</td><td>S/ 3 986</td><td>S/ 3,413 - S/ 4,620</td><td>S/ 5 450</td><td>S/ 3,651 - S/ 7,451</td></tr>
+                            <tr><td>16</td><td>INGENIERÍA CIVIL</td><td>S/ 3 944</td><td>S/ 1,600 - S/ 6,778</td><td>S/ 9 116</td><td>S/ 3,000 - S/ 16,113</td></tr>
+                            <tr><td>17</td><td>INGENIERÍA NAVAL Y AERONÁUTICA</td><td>S/ 3 886</td><td>S/ 1,800 - S/ 6,500</td><td>S/ 7 490</td><td>S/ 3,203 - S/ 13,034</td></tr>
+                            <tr><td>18</td><td>INGENIERÍA INDUSTRIAL</td><td>S/ 3 879</td><td>S/ 1,600 - S/ 6,800</td><td>S/ 9 305</td><td>S/ 2,641 - S/ 17,970</td></tr>
+                            <tr><td>19</td><td>OTRAS CARRERAS DE ADMINISTRACIÓN</td><td>S/ 3 802</td><td>S/ 1,560 - S/ 6,500</td><td>S/ 7 623</td><td>S/ 2,333 - S/ 14,409</td></tr>
+                            <tr><td>20</td><td>ESTADÍSTICA</td><td>S/ 3 772</td><td>S/ 1,403 - S/ 6,700</td><td>S/ 7 226</td><td>S/ 2,314 - S/ 12,960</td></tr>
+                            <tr><td>21</td><td>INVESTIGACIÓN OPERATIVA</td><td>S/ 3 713</td><td>S/ 1,608 - S/ 6,232</td><td>S/ 7 228</td><td>S/ 2,617 - S/ 13,192</td></tr>
+                            <tr><td>22</td><td>INGENIERÍA ELECTRÓNICA</td><td>S/ 3 680</td><td>S/ 1,600 - S/ 6,413</td><td>S/ 8 880</td><td>S/ 2,813 - S/ 16,369</td></tr>
+                            <tr><td>23</td><td>ADMINISTRACIÓN PÚBLICA</td><td>S/ 3 570</td><td>S/ 1,359 - S/ 7,081</td><td>S/ 6 222</td><td>S/ 2,200 - S/ 11,158</td></tr>
+                            <tr><td>24</td><td>CIENCIAS POLÍTICAS</td><td>S/ 3 554</td><td>S/ 1,500 - S/ 6,042</td><td>S/ 8 511</td><td>S/ 2,709 - S/ 15,361</td></tr>
+                            <tr><td>25</td><td>AGRONEGOCIOS</td><td>S/ 3 421</td><td>S/ 1,500 - S/ 6,007</td><td>S/ 7 556</td><td>S/ 2,300 - S/ 16,678</td></tr>
+                            <tr><td>26</td><td>INGENIERÍA SANITARIA</td><td>S/ 3 398</td><td>S/ 1,560 - S/ 6,000</td><td>S/ 8 557</td><td>S/ 2,819 - S/ 15,000</td></tr>
+                            <tr><td>27</td><td>GEOGRAFÍA</td><td>S/ 3 387</td><td>S/ 1,830 - S/ 5,529</td><td>S/ 7 396</td><td>S/ 3,026 - S/ 12,264</td></tr>
+                            <tr><td>28</td><td>MARKETING</td><td>S/ 3 380</td><td>S/ 1,385 - S/ 6,099</td><td>S/ 8 564</td><td>S/ 2,065 - S/ 17,500</td></tr>
+                            <tr><td>29</td><td>IDIOMAS</td><td>S/ 3 317</td><td>S/ 1,597 - S/ 5,800</td><td>S/ 5 861</td><td>S/ 2,280 - S/ 10,713</td></tr>
+                            <tr><td>30</td><td>FARMACIA Y BIOQUÍMICA</td><td>S/ 3 244</td><td>S/ 1,316 - S/ 5,763</td><td>S/ 5 685</td><td>S/ 2,320 - S/ 9,406</td></tr>
+                            <tr><td>31</td><td>ANTROPOLOGÍA Y ARQUEOLOGÍA</td><td>S/ 3 227</td><td>S/ 1,431 - S/ 5,100</td><td>S/ 5 629</td><td>S/ 2,341 - S/ 10,000</td></tr>
+                            <tr><td>32</td><td>TECNOLOGÍA MÉDICA</td><td>S/ 3 222</td><td>S/ 1,360 - S/ 5,787</td><td>S/ 4 673</td><td>S/ 2,000 - S/ 7,713</td></tr>
+                            <tr><td>33</td><td>ADMINISTRACIÓN DE EMPRESAS</td><td>S/ 3 198</td><td>S/ 1,310 - S/ 5,800</td><td>S/ 7 726</td><td>S/ 2,014 - S/ 15,200</td></tr>
+                            <tr><td>34</td><td>OFICIALES DE LAS FUERZAS ARMADAS</td><td>S/ 3 177</td><td>S/ 2,470 - S/ 4,450</td><td>S/ 7 703</td><td>S/ 2,800 - S/ 13,925</td></tr>
+                            <tr><td>35</td><td>QUÍMICA</td><td>S/ 3 142</td><td>S/ 1,524 - S/ 5,306</td><td>S/ 7 516</td><td>S/ 2,500 - S/ 14,113</td></tr>
+                            <tr><td>36</td><td>SERVICIOS SOCIALES Y ASISTENCIALES</td><td>S/ 3 115</td><td>S/ 1,413 - S/ 5,000</td><td>S/ 6 291</td><td>S/ 2,300 - S/ 11,113</td></tr>
+                            <tr><td>37</td><td>TRABAJO SOCIAL</td><td>S/ 3 087</td><td>S/ 1,600 - S/ 4,668</td><td>S/ 5 123</td><td>S/ 2,600 - S/ 8,206</td></tr>
+                            <tr><td>38</td><td>ARQUITECTURA Y URBANISMO</td><td>S/ 3 076</td><td>S/ 1,303 - S/ 5,020</td><td>S/ 6 603</td><td>S/ 2,213 - S/ 12,000</td></tr>
+                            <tr><td>39</td><td>CIENCIAS DE LA COMUNICACIÓN</td><td>S/ 3 069</td><td>S/ 1,413 - S/ 5,164</td><td>S/ 6 742</td><td>S/ 2,064 - S/ 12,939</td></tr>
+                            <tr><td>40</td><td>AGROPECUARIA</td><td>S/ 3 064</td><td>S/ 1,500 - S/ 4,845</td><td>S/ 6 782</td><td>S/ 2,500 - S/ 12,166</td></tr>
+                            <tr><td>41</td><td>NEGOCIOS INTERNACIONALES</td><td>S/ 3 059</td><td>S/ 1,377 - S/ 5,212</td><td>S/ 6 109</td><td>S/ 2,000 - S/ 11,855</td></tr>
+                            <tr><td>42</td><td>ECOLOGÍA Y MEDIO AMBIENTE</td><td>S/ 3 030</td><td>S/ 1,500 - S/ 4,938</td><td>S/ 6 348</td><td>S/ 2,400 - S/ 11,223</td></tr>
+                            <tr><td>43</td><td>PERIODISMO Y LOCUCIÓN</td><td>S/ 3 004</td><td>S/ 1,445 - S/ 5,000</td><td>S/ 6 119</td><td>S/ 2,000 - S/ 11,579</td></tr>
+                            <tr><td>44</td><td>PSICOLOGÍA</td><td>S/ 2 989</td><td>S/ 1,300 - S/ 5,763</td><td>S/ 5 124</td><td>S/ 2,063 - S/ 8,656</td></tr>
+                            <tr><td>45</td><td>OTRAS INGENIERÍAS</td><td>S/ 2 963</td><td>S/ 1,312 - S/ 5,000</td><td>S/ 6 617</td><td>S/ 2,413 - S/ 11,594</td></tr>
+                            <tr><td>46</td><td>EDUCACIÓN ESPECIAL</td><td>S/ 2 913</td><td>S/ 1,500 - S/ 4,600</td><td>S/ 4 307</td><td>S/ 2,138 - S/ 7,635</td></tr>
+                            <tr><td>47</td><td>DISEÑO</td><td>S/ 2 903</td><td>S/ 1,500 - S/ 4,800</td><td>S/ 6 050</td><td>S/ 2,272 - S/ 10,560</td></tr>
+                            <tr><td>48</td><td>BIBLIOTECOLOGÍA Y ARCHIVO</td><td>S/ 2 896</td><td>S/ 1,713 - S/ 4,392</td><td>S/ 5 408</td><td>S/ 2,608 - S/ 9,215</td></tr>
+                            <tr><td>49</td><td>BIOLOGÍA</td><td>S/ 2 876</td><td>S/ 1,339 - S/ 5,763</td><td>S/ 5 670</td><td>S/ 2,222 - S/ 9,554</td></tr>
+                            <tr><td>50</td><td>INGENIERÍA TEXTIL Y CONFECCIONES</td><td>S/ 2 851</td><td>S/ 1,699 - S/ 4,500</td><td>S/ 5 912</td><td>S/ 2,463 - S/ 10,563</td></tr>
+                            <tr><td>51</td><td>EDUCACIÓN TECNOLÓGICA</td><td>S/ 2 830</td><td>S/ 1,130 - S/ 6,264</td><td>S/ 4 974</td><td>S/ 1,962 - S/ 9,114</td></tr>
+                            <tr><td>52</td><td>FÍSICA</td><td>S/ 2 757</td><td>S/ 1,350 - S/ 4,407</td><td>S/ 5 669</td><td>S/ 1,935 - S/ 10,350</td></tr>
+                            <tr><td>53</td><td>DISEÑO</td><td>S/ 2 755</td><td>S/ 1,300 - S/ 4,900</td><td>S/ 5 582</td><td>S/ 1,938 - S/ 10,793</td></tr>
+                            <tr><td>54</td><td>INGENIERÍA EN AGROINDUSTRIA</td><td>S/ 2 711</td><td>S/ 1,400 - S/ 4,283</td><td>S/ 5 082</td><td>S/ 2,164 - S/ 8,870</td></tr>
+                            <tr><td>55</td><td>VETERINARIA</td><td>S/ 2 669</td><td>S/ 1,130 - S/ 4,564</td><td>S/ 5 744</td><td>S/ 1,750 - S/ 10,466</td></tr>
+                            <tr><td>56</td><td>CIENCIAS FORESTALES</td><td>S/ 2 668</td><td>S/ 1,380 - S/ 4,000</td><td>S/ 6 807</td><td>S/ 2,264 - S/ 12,113</td></tr>
+                            <tr><td>57</td><td>ZOOTECNIA</td><td>S/ 2 656</td><td>S/ 1,319 - S/ 4,225</td><td>S/ 7 069</td><td>S/ 2,207 - S/ 13,605</td></tr>
+                            <tr><td>58</td><td>MATEMÁTICA</td><td>S/ 2 647</td><td>S/ 1,268 - S/ 4,550</td><td>S/ 5 115</td><td>S/ 1,709 - S/ 9,657</td></tr>
+                            <tr><td>59</td><td>CONTABILIDAD Y FINANZAS</td><td>S/ 2 618</td><td>S/ 1,243 - S/ 4,300</td><td>S/ 6 095</td><td>S/ 1,965 - S/ 11,654</td></tr>
+                            <tr><td>60</td><td>TEOLOGÍA Y FILOSOFÍA</td><td>S/ 2 603</td><td>S/ 1,380 - S/ 4,224</td><td>S/ 4 943</td><td>S/ 2,063 - S/ 7,856</td></tr>
+                            <tr><td>61</td><td>INGENIERÍA PESQUERANACIONALS/</td><td>S/ 2 572</td><td>S/ 1,483 - S/ 4,000</td><td>S/ 5 975</td><td>S/ 2,163 - S/ 10,339</td></tr>
+                            <tr><td>62</td><td>INGENIERÍA EN INDUSTRIAS ALIMENTARIAS</td><td>S/ 2 559</td><td>S/ 1,300 - S/ 4,000</td><td>S/ 6 331</td><td>S/ 2,113 - S/ 12,083</td></tr>
+                            <tr><td>63</td><td>ARTES</td><td>S/ 2 503</td><td>S/ 1,350 - S/ 3,902</td><td>S/ 5 639</td><td>S/ 1,800 - S/ 10,359</td></tr>
+                            <tr><td>64</td><td>MARKETING</td><td>S/ 2 481</td><td>S/ 1,200 - S/ 4,162</td><td>S/ 6 128</td><td>S/ 1,900 - S/ 12,800</td></tr>
+                            <tr><td>65</td><td>ADMINISTRACIÓN DE SERVICIOS TURÍSTICOS, HOTELERÍA Y GASTRONOMÍA</td><td>S/ 2 471</td><td>S/ 1,204 - S/ 4,000</td><td>S/ 4 600</td><td>S/ 1,692 - S/ 8,500</td></tr>
+                            <tr><td>66</td><td>EDUCACIÓN SECUNDARIA</td><td>S/ 2 469</td><td>S/ 1,216 - S/ 3,701</td><td>S/ 3 961</td><td>S/ 1,900 - S/ 6,430</td></tr>
+                            <tr><td>67</td><td>EDUCACIÓN PRIMARIA</td><td>S/ 2 462</td><td>S/ 1,200 - S/ 3,801</td><td>S/ 3 754</td><td>S/ 1,900 - S/ 6,076</td></tr>
+                            <tr><td>68</td><td>LINGÜÍSTICA Y LITERATURA</td><td>S/ 2 431</td><td>S/ 1,200 - S/ 4,043</td><td>S/ 5 177</td><td>S/ 1,600 - S/ 9,379</td></tr>
+                            <tr><td>69</td><td>HISTORIA</td><td>S/ 2 405</td><td>S/ 1,300 - S/ 3,633</td><td>S/ 5 282</td><td>S/ 2,030 - S/ 9,310</td></tr>
+                            <tr><td>70</td><td>CONTABILIDAD Y FINANZAS</td><td>S/ 2 352</td><td>S/ 1,200 - S/ 3,948</td><td>S/ 3 520</td><td>S/ 1,544 - S/ 5,937</td></tr>
+                            <tr><td>71</td><td>EDUCACIÓN FÍSICA</td><td>S/ 2 322</td><td>S/ 1,200 - S/ 3,440</td><td>S/ 3 792</td><td>S/ 1,713 - S/ 6,271</td></tr>
+                            <tr><td>72</td><td>OTRAS CARRERAS DE EDUCACIÓN</td><td>S/ 2 224</td><td>S/ 1,200 - S/ 3,401</td><td>S/ 4 000</td><td>S/ 1,814 - S/ 6,531</td></tr>
+                            <tr><td>73</td><td>EDUCACIÓN INICIAL</td><td>S/ 2 222</td><td>S/ 1,131 - S/ 3,501</td><td>S/ 3 235</td><td>S/ 1,467 - S/ 5,306</td></tr>
+                            <tr><td>74</td><td>EDUCACIÓN ARTÍSTICA</td><td>S/ 2 035</td><td>S/ 1,281 - S/ 3,000</td><td>S/ 3 482</td><td>S/ 1,600 - S/ 6,026</td></tr>
+                            <tr><td>75</td><td>TECNOLOGÍA MÉDICA</td><td>S/ 2 024</td><td>S/ 1,200 - S/ 3,270</td><td>S/ 2 950</td><td>S/ 1,493 - S/ 4,515</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Test Vocacional -->
+    <section id="test">
+        <div class="section-title">
+            <h2>Test Vocacional Interactivo</h2>
+            <p>Descubre qué área profesional se alinea mejor con tus talentos e intereses</p>
+        </div>
+
+        <div class="test-container">
+            <div id="quiz-form">
+                <div class="question-box">
+                    <h3>1. ¿Qué actividad disfrutas más en tu tiempo libre?</h3>
+                    <div class="options-grid">
+                        <button class="option-btn" onclick="selectOption(this, 1, 'ingenieria')">Resolver problemas lógicos, calcular estructuras o analizar datos numéricos.</button>
+                        <button class="option-btn" onclick="selectOption(this, 1, 'salud')">Investigar cómo funciona el cuerpo humano, ayudar o cuidar la salud de los demás.</button>
+                        <button class="option-btn" onclick="selectOption(this, 1, 'sociales')">Debatir sobre leyes, defender los derechos humanos o entender la sociedad y los negocios.</button>
+                        <button class="option-btn" onclick="selectOption(this, 1, 'tecnica')">Armar, reparar aparatos, ensamblar sistemas mecánicos o trabajar con maquinaria.</button>
+                    </div>
+                </div>
+
+                <div class="question-box">
+                    <h3>2. ¿Cuál de los siguientes entornos te genera mayor motivación para trabajar?</h3>
+                    <div class="options-grid">
+                        <button class="option-btn" onclick="selectOption(this, 2, 'ingenieria')">Un proyecto de construcción, una mina, una central de tecnología o proyectos geológicos.</button>
+                        <button class="option-btn" onclick="selectOption(this, 2, 'salud')">Un hospital, laboratorio clínico, posta médica o centro de investigación científica.</button>
+                        <button class="option-btn" onclick="selectOption(this, 2, 'sociales')">Una oficina de gestión internacional, instituciones públicas, juzgados o empresas corporativas.</button>
+                        <button class="option-btn" onclick="selectOption(this, 2, 'tecnica')">Un taller automotriz de alta precisión, industrias de manufactura o plantas operativas.</button>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 2rem;">
+                    <button class="btn" onclick="calculateResult()">Ver Mis Resultados Vocacionales</button>
+                </div>
+            </div>
+
+            <!-- Resultados del Test -->
+            <div id="test-results" class="test-results">
+                <h3>¡Resultado Calculado con Éxito!</h3>
+                <p id="result-description" style="font-size: 1.1rem; color: var(--dark); margin-bottom: 1.5rem;"></p>
+                <button class="btn" onclick="resetTest()">Volver a Intentar el Test</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 Colectivo Vocacional Valle del Huascarán. Comprometidos con el desarrollo educativo de nuestra juventud.</p>
+    </footer>
+
+    <!-- JavaScript para interactividad -->
+    <script>
+        const institutionStudents = {
+            'UNI': [
+                { name: 'Garay Salazar Wido Gabriel', career: 'Estudiante de Ingeniería Geológica' }
+            ],
+            'UNMSM': [
+                { name: 'Huerta Mendez Sosimo Gaudencio', career: 'Estudiante de Negocios Internacionales' }
+            ],
+            'UCS': [
+                { name: 'Sena Flores Yomira Sheylet', career: 'Estudiante de Medicina Humana' }
+            ],
+            'UCV': [
+                { name: 'Huaromo Huacanca Soledad Rosalinda', career: 'Estudiante de Psicología' }
+            ],
+            'UNASAM': [
+                { name: 'Soriano Gonzalez Klim Jhamir', career: 'Estudiante de Ingeniería de Minas' },
+                { name: 'Garcia Espinoza Milagros Gimena', career: 'Estudiante de Derecho y Ciencias Políticas' }
+            ],
+            'SENATI': [
+                { name: 'Benito Benito Dany Janynyn', career: 'Mecánica de Automotores Diésel' }
+            ],
+            'FFAA': [
+                { name: 'Franclin Shocush', career: 'Miembro activo de las Fuerzas Armadas' }
+            ]
+        };
+
+        function showStudents(instKey) {
+            document.querySelectorAll('.ally-card').forEach(card => card.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+
+            const container = document.getElementById('students-container');
+            const data = institutionStudents[instKey];
+
+            let html = `<h3>Estudiantes y Representantes de ${instKey}:</h3>`;
+            data.forEach(student => {
+                html += `
+                    <div class="student-item">
+                        <span class="student-name"><i class="fa-solid fa-user-graduate" style="color: #008080; margin-right: 8px;"></i>${student.name}</span>
+                        <span class="student-career">${student.career}</span>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+        }
+
+        // Control de pestañas de sueldos
+        function switchTab(type) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active-tab'));
+            document.querySelectorAll('.salary-table-section').forEach(sec => sec.classList.remove('active-section'));
+
+            if (type === 'tecnicas') {
+                event.currentTarget.classList.add('active-tab');
+                document.getElementById('sec-tecnicas').classList.add('active-section');
+            } else {
+                event.currentTarget.classList.add('active-tab');
+                document.getElementById('sec-universitarias').classList.add('active-section');
+            }
+        }
+
+        // Buscador dinámico inteligente (ignora tildes y mayúsculas/minúsculas)
+        function normalizeText(text) {
+            return text.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toUpperCase();
+        }
+
+        function filterTable(inputId, tableId) {
+            let input = document.getElementById(inputId);
+            let filter = normalizeText(input.value);
+            let table = document.getElementById(tableId);
+            let tr = table.getElementsByTagName('tr');
+
+            for (let i = 1; i < tr.length; i++) {
+                let td = tr[i].getElementsByTagName('td')[1]; // Columna de nombre de carrera
+                if (td) {
+                    let txtValue = normalizeText(td.textContent || td.innerText);
+                    if (txtValue.indexOf(filter) > -1) {
+                        tr[i].style.display = '';
+                    } else {
+                        tr[i].style.display = 'none';
+                    }
+                }
+            }
+        }
+
+        // Lógica del Test Vocacional
+        let userAnswers = {};
+
+        function selectOption(button, questionNum, category) {
+            const parentBox = button.parentElement;
+            parentBox.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('selected'));
+            
+            button.classList.add('selected');
+            userAnswers[questionNum] = category;
+        }
+
+        function calculateResult() {
+            if (Object.keys(userAnswers).length < 2) {
+                alert('Por favor responde todas las preguntas del test para ver tu resultado.');
+                return;
+            }
+
+            let counts = {};
+            for (let q in userAnswers) {
+                let cat = userAnswers[q];
+                counts[cat] = (counts[cat] || 0) + 1;
+            }
+
+            let bestCategory = Object.keys(counts).reduce((a, b) => counts[a] > counts[b] ? a : b);
+
+            let resultText = "";
+            if (bestCategory === 'ingenieria') {
+                resultText = "Tienes un perfil orientado hacia la **Ingeniería, Ciencias de la Tierra y análisis exactos**. ¡Carreras como Ingeniería de Minas, Ingeniería Geológica o de Sistemas son ideales para ti!";
+            } else if (bestCategory === 'salud') {
+                resultText = "Tu vocación se inclina fuertemente hacia las **Ciencias de la Salud y el cuidado humano**. ¡Carreras como Medicina Humana o Psicología te permitirán impactar positivamente la vida de las personas!";
+            } else if (bestCategory === 'sociales') {
+                resultText = "Destacas en áreas de **Ciencias Sociales, Leyes y Negocios**. ¡Carreras como Derecho y Ciencias Políticas o Negocios Internacionales van perfectas con tus habilidades de liderazgo y argumentación!";
+            } else {
+                resultText = "Posees una inclinación innata hacia la **Tecnología Aplicada y carreras técnicas especializadas**. ¡Programas como Mecánica de Automotores Diésel u otras ramas industriales te abrirán grandes puertas prácticas!";
+            }
+
+            document.getElementById('quiz-form').style.display = 'none';
+            document.getElementById('test-results').style.display = 'block';
+            document.getElementById('result-description').innerHTML = resultText;
+        }
+
+        function resetTest() {
+            userAnswers = {};
+            document.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('selected'));
+            document.getElementById('test-results').style.display = 'none';
+            document.getElementById('quiz-form').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
