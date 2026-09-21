@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colectivo Valle del Huascarán - Test Vocacional Integral</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        andean: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            850: '#064e3b',
+                            900: '#022c22'
+                        },
+                        terracotta: {
+                            500: '#f97316',
+                            600: '#ea580c'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: linear-gradient(rgba(2, 44, 34, 0.75), rgba(2, 28, 22, 0.85)), url('image_3d445e.jpg') no-repeat center center fixed;
+            background-size: cover;
+            min-height: 100vh;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .glass-dark {
+            background: rgba(2, 44, 34, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .fade-in {
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="text-slate-800 flex flex-col min-h-screen">
+
+    <header class="w-full py-4 px-6 md:px-12 flex justify-between items-center bg-black/30 backdrop-blur-md border-b border-white/10 text-white sticky top-0 z-50">
+        <div class="flex items-center space-x-3 cursor-pointer" onclick="app.goHome()">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-400 flex items-center justify-center shadow-lg">
+                <i class="fa-solid fa-mountain-sun text-white text-lg"></i>
+            </div>
+            <div>
+                <h1 class="font-bold text-lg leading-tight tracking-wide">Colectivo Valle del Huascarán</h1>
+                <p class="text-xs text-emerald-200">Test Vocacional & Oportunidades Locales</p>
+            </div>
+        </div>
+        <nav class="hidden md:flex items-center space-x-6 text-sm font-medium">
+            <button onclick="app.goHome()" class="hover:text-emerald-300 transition"><i class="fa-solid fa-house mr-1"></i> Inicio</button>
+            <button onclick="app.showDirectory()" class="hover:text-emerald-300 transition"><i class="fa-solid fa-compass mr-1"></i> Carreras y Oficios</button>
+            <button onclick="app.showAbout()" class="hover:text-emerald-300 transition"><i class="fa-solid fa-circle-info mr-1"></i> Sobre el Colectivo</button>
+        </nav>
+        <button class="md:hidden text-white text-xl" onclick="app.toggleMobileMenu()">
+            <i class="fa-solid fa-bars" id="menu-icon"></i>
+        </button>
+    </header>
+
+    <!-- Mobile menu drawer -->
+    <div id="mobile-menu" class="hidden fixed inset-0 z-40 bg-slate-950/90 backdrop-blur-lg flex flex-col pt-24 px-8 text-white space-y-6 text-lg font-medium">
+        <button onclick="app.goHome(); app.toggleMobileMenu();" class="text-left py-2 border-b border-white/10"><i class="fa-solid fa-house mr-3 text-emerald-400"></i> Inicio</button>
+        <button onclick="app.showDirectory(); app.toggleMobileMenu();" class="text-left py-2 border-b border-white/10"><i class="fa-solid fa-compass mr-3 text-emerald-400"></i> Carreras y Oficios</button>
+        <button onclick="app.showAbout(); app.toggleMobileMenu();" class="text-left py-2 border-b border-white/10"><i class="fa-solid fa-circle-info mr-3 text-emerald-400"></i> Sobre el Colectivo</button>
+    </div>
+
+    <main class="flex-grow flex items-center justify-center p-4 sm:p-6 md:p-8 max-w-5xl mx-auto w-full">
+        
+        <!-- View 1: Welcome Screen -->
+        <div id="view-welcome" class="glass-card rounded-3xl p-6 sm:p-10 shadow-2xl w-full text-center fade-in">
+            <div class="inline-flex items-center px-4 py-1.5 rounded-full bg-emerald-100 text-emerald-800 text-xs font-semibold mb-6 shadow-sm">
+                <i class="fa-solid fa-seedling mr-2 text-emerald-600"></i> Descubre tu camino en Ancash y el Perú
+            </div>
+            <h2 class="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight mb-4">
+                Encuentra tu Vocación en el <span class="text-emerald-700">Valle del Huascarán</span>
+            </h2>
+            <p class="text-slate-600 text-base sm:text-lg max-w-2xl mx-auto mb-8 leading-relaxed">
+                No solo se trata de universidad o institutos. Explora tu vocación real entre carreras profesionales, oficios artesanales, turismo sostenible, agricultura moderna, arte andino y emprendimientos locales.
+            </p>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10 text-left max-w-3xl mx-auto">
+                <div class="bg-white/80 p-4 rounded-2xl shadow-sm border border-slate-100 flex items-start space-x-3">
+                    <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-sm text-slate-800">Profesional & Técnico</h4>
+                        <p class="text-xs text-slate-500 mt-0.5">Ingenierías, salud, educación, tecnologías y más.</p>
+                    </div>
+                </div>
+                <div class="bg-white/80 p-4 rounded-2xl shadow-sm border border-slate-100 flex items-start space-x-3">
+                    <div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center shrink-0">
+                        <i class="fa-solid fa-hammer"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-sm text-slate-800">Oficios & Arte</h4>
+                        <p class="text-xs text-slate-500 mt-0.5">Textilería fina, carpintería, orfebrería y pintura.</p>
+                    </div>
+                </div>
+                <div class="bg-white/80 p-4 rounded-2xl shadow-sm border border-slate-100 flex items-start space-x-3">
+                    <div class="w-10 h-10 rounded-xl bg-teal-50 text-teal-600 flex items-center justify-center shrink-0">
+                        <i class="fa-solid fa-mountain"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-sm text-slate-800">Turismo & Emprendimiento</h4>
+                        <p class="text-xs text-slate-500 mt-0.5">Guías de alta montaña, agroecología y gastronomía.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                <button onclick="app.startQuiz()" class="w-full sm:w-auto px-8 py-4 bg-emerald-700 hover:bg-emerald-800 text-white font-bold rounded-2xl shadow-lg hover:shadow-emerald-700/30 transition transform hover:-translate-y-0.5 flex items-center justify-center space-x-3 text-base">
+                    <span>Iniciar Test Vocacional</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+                <button onclick="app.showDirectory()" class="w-full sm:w-auto px-8 py-4 bg-white hover:bg-slate-50 text-slate-700 font-bold rounded-2xl shadow-md border border-slate-200 transition flex items-center justify-center space-x-2 text-base">
+                    <i class="fa-solid fa-book-open text-emerald-600"></i>
+                    <span>Ver Directorio Completo</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- View 2: Quiz Screen -->
+        <div id="view-quiz" class="hidden glass-card rounded-3xl p-6 sm:p-10 shadow-2xl w-full max-w-3xl fade-in">
+            <div class="flex justify-between items-center mb-6">
+                <span id="quiz-progress-text" class="text-xs font-bold uppercase tracking-wider text-emerald-700 bg-emerald-100 px-3 py-1 rounded-full">Pregunta 1 de 8</span>
+                <span id="quiz-category-badge" class="text-xs font-semibold text-slate-500 bg-slate-100 px-3 py-1 rounded-full">Habilidades e Intereses</span>
+            </div>
+            
+            <div class="w-full bg-slate-200 h-2 rounded-full mb-8 overflow-hidden">
+                <div id="quiz-progress-bar" class="bg-emerald-600 h-full transition-all duration-300" style="width: 12.5%;"></div>
+            </div>
+
+            <h3 id="quiz-question-title" class="text-xl sm:text-2xl font-bold text-slate-900 mb-6 leading-snug">
+                ¿Qué tipo de actividades disfrutas más en tu día a día o te genera mayor curiosidad?
+            </h3>
+
+            <div id="quiz-options-container" class="space-y-3 mb-8">
+                <!-- Dynamic options injected via JS -->
+            </div>
+
+            <div class="flex justify-between items-center pt-4 border-t border-slate-200">
+                <button id="quiz-btn-prev" onclick="app.prevQuestion()" class="px-5 py-2.5 rounded-xl border border-slate-300 text-slate-600 hover:bg-slate-100 font-semibold text-sm transition disabled:opacity-40 disabled:cursor-not-allowed">
+                    <i class="fa-solid fa-arrow-left mr-2"></i> Anterior
+                </button>
+                <button id="quiz-btn-next" onclick="app.nextQuestion()" class="px-6 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-semibold text-sm shadow-md transition disabled:opacity-40 disabled:cursor-not-allowed">
+                    Siguiente <i class="fa-solid fa-arrow-right ml-2"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- View 3: Results Screen -->
+        <div id="view-results" class="hidden glass-card rounded-3xl p-6 sm:p-10 shadow-2xl w-full max-w-4xl fade-in">
+            <div class="text-center mb-8">
+                <div class="w-16 h-16 rounded-2xl bg-emerald-100 text-emerald-700 mx-auto flex items-center justify-center text-2xl mb-3 shadow-sm">
+                    <i class="fa-solid fa-award"></i>
+                </div>
+                <span class="text-xs font-bold uppercase tracking-wider text-emerald-700 bg-emerald-100 px-3 py-1 rounded-full">Tu Perfil Vocacional Ideal</span>
+                <h2 id="result-profile-title" class="text-2xl sm:text-4xl font-extrabold text-slate-900 mt-2">Perfil: Innovador del Valle y Montaña</h2>
+                <p id="result-profile-desc" class="text-slate-600 text-base max-w-2xl mx-auto mt-2">
+                    Tienes una gran afinidad por combinar la riqueza natural y cultural de la Cordillera Blanca con soluciones prácticas, técnicas o productivas.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                <div class="bg-white/90 p-6 rounded-2xl shadow-sm border border-slate-100">
+                    <h4 class="font-bold text-slate-800 text-lg mb-4 flex items-center">
+                        <i class="fa-solid fa-compass text-emerald-600 mr-2"></i> Sugerencias Principales para Ti
+                    </h4>
+                    <div id="result-recommendations-list" class="space-y-4">
+                        <!-- Injected recommendations -->
+                    </div>
+                </div>
+
+                <div class="bg-white/90 p-6 rounded-2xl shadow-sm border border-slate-100 flex flex-col justify-between">
+                    <div>
+                        <h4 class="font-bold text-slate-800 text-lg mb-4 flex items-center">
+                            <i class="fa-solid fa-lightbulb text-amber-500 mr-2"></i> Siguiente Paso en el Valle
+                        </h4>
+                        <p class="text-sm text-slate-600 mb-4 leading-relaxed">
+                            El Colectivo Valle del Huascarán conecta talentos locales con instituciones educativas técnicas, centros de capacitación artesanal, cooperativas agrarias y programas de incubación de turismo comunitario.
+                        </p>
+                        <div class="bg-emerald-50 p-4 rounded-xl border border-emerald-100 mb-4">
+                            <p class="text-xs font-semibold text-emerald-800 mb-1"><i class="fa-solid fa-location-dot mr-1"></i> Oportunidad en la región:</p>
+                            <p id="result-local-tip" class="text-xs text-emerald-900">Becas y talleres técnicos disponibles en Huaraz, Carhuaz, Yungay y Caraz.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-col sm:flex-row gap-3 pt-4 border-t border-slate-100">
+                        <button onclick="app.startQuiz()" class="flex-1 py-3 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl text-sm transition text-center">
+                            <i class="fa-solid fa-rotate-right mr-1"></i> Repetir Test
+                        </button>
+                        <button onclick="app.showDirectory()" class="flex-1 py-3 bg-emerald-700 hover:bg-emerald-800 text-white font-bold rounded-xl text-sm shadow-md transition text-center">
+                            <i class="fa-solid fa-search mr-1"></i> Ver Directorio
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- View 4: Directory & Exploration Screen -->
+        <div id="view-directory" class="hidden glass-card rounded-3xl p-6 sm:p-10 shadow-2xl w-full max-w-4xl fade-in">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
+                <div>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">Directorio de Opciones Vocacionales</h2>
+                    <p class="text-slate-600 text-sm mt-1">Explora carreras, oficios, arte, turismo y emprendimiento en el Valle del Huascarán.</p>
+                </div>
+                <button onclick="app.goHome()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-xl text-sm transition">
+                    <i class="fa-solid fa-arrow-left mr-1"></i> Volver al Inicio
+                </button>
+            </div>
+
+            <!-- Filter Tabs -->
+            <div class="flex flex-wrap gap-2 mb-6 pb-4 border-b border-slate-200">
+                <button onclick="app.filterDirectory('all')" id="filter-all" class="px-4 py-2 rounded-xl text-xs font-bold transition bg-emerald-700 text-white shadow-sm">Todos</button>
+                <button onclick="app.filterDirectory('tecnico')" id="filter-tecnico" class="px-4 py-2 rounded-xl text-xs font-bold transition bg-white text-slate-700 border border-slate-200 hover:bg-slate-50">Técnicos & Universitarios</button>
+                <button onclick="app.filterDirectory('oficio')" id="filter-oficio" class="px-4 py-2 rounded-xl text-xs font-bold transition bg-white text-slate-700 border border-slate-200 hover:bg-slate-50">Oficios & Construcción</button>
+                <button onclick="app.filterDirectory('arte')" id="filter-arte" class="px-4 py-2 rounded-xl text-xs font-bold transition bg-white text-slate-700 border border-slate-200 hover:bg-slate-50">Arte & Textilería</button>
+                <button onclick="app.filterDirectory('turismo')" id="filter-turismo" class="px-4 py-2 rounded-xl text-xs font-bold transition bg-white text-slate-700 border border-slate-200 hover:bg-slate-50">Turismo & Montaña</button>
+                <button onclick="app.filterDirectory('agro')" id="filter-agro" class="px-4 py-2 rounded-xl text-xs font-bold transition bg-white text-slate-700 border border-slate-200 hover:bg-slate-50">Agricultura & Emprendimiento</button>
+            </div>
+
+            <div id="directory-list" class="grid grid-cols-1 md:grid-cols-2 gap-4 max-h-[500px] overflow-y-auto pr-2">
+                <!-- Injected via JS -->
+            </div>
+        </div>
+
+        <!-- View 5: About Screen -->
+        <div id="view-about" class="hidden glass-card rounded-3xl p-6 sm:p-10 shadow-2xl w-full max-w-3xl fade-in">
+            <div class="text-center mb-6">
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">Sobre el Colectivo Valle del Huascarán</h2>
+                <p class="text-emerald-700 font-semibold text-sm mt-1">Impulsando el talento y la identidad territorial de Ancash</p>
+            </div>
+            
+            <div class="space-y-4 text-slate-600 text-sm sm:text-base leading-relaxed mb-8">
+                <p>
+                    El <strong>Colectivo Valle del Huascarán</strong> nace con la convicción de que el desarrollo regional no solo depende de carreras universitarias tradicionales, sino de reconocer, revalorizar y potenciar la inmensa diversidad de saberes, oficios, artes y vocaciones que dan vida a nuestra tierra.
+                </p>
+                <p>
+                    Desde guías oficiales de alta montaña y expertos en agricultura andina sostenible, hasta maestros artesanos textiles, carpinteros, emprendedores gastronómicos, técnicos electromecánicos y profesionales de la salud o educación. Cada vocación es un pilar fundamental para nuestra comunidad.
+                </p>
+                <div class="bg-emerald-50 p-5 rounded-2xl border border-emerald-100 flex items-center space-x-4 mt-6">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-600 text-white flex items-center justify-center text-xl shrink-0">
+                        <i class="fa-solid fa-hands-holding-child"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-slate-800 text-sm">Nuestro Propósito</h4>
+                        <p class="text-xs text-slate-600 mt-0.5">Guiar a las nuevas generaciones hacia su realización personal y productiva, conectando sus pasiones con las oportunidades reales del Callejón de Huaylas y Ancash.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <button onclick="app.goHome()" class="px-6 py-3 bg-emerald-700 hover:bg-emerald-800 text-white font-bold rounded-xl text-sm transition shadow-md">
+                    <i class="fa-solid fa-arrow-left mr-2"></i> Regresar al Inicio
+                </button>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="w-full py-4 text-center text-white/70 text-xs bg-black/40 backdrop-blur-md border-t border-white/10 mt-auto">
+        <p>© 2026 Colectivo Valle del Huascarán · Ancash, Perú. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        // Quiz Questions Database spanning professional, technical, arts, trades, agriculture, and tourism
+        const quizData = [
+            {
+                id: 1,
+                category: "Entorno e Intereses",
+                question: "¿Cuál de estos espacios o actividades te genera mayor entusiasmo y conexión?",
+                options: [
+                    { text: "Explorar montañas, glaciares, lagunas y liderar grupos de caminata o aventura.", tags: { turismo: 3, tecnico: 1 } },
+                    { text: "Diseñar, construir o reparar estructuras, maquinaria o herramientas mecánicas.", tags: { oficio: 3, tecnico: 2 } },
+                    { text: "Crear piezas artísticas, tejidos tradicionales, pinturas o manualidades con identidad.", tags: { arte: 3, emprendimiento: 1 } },
+                    { text: "Investigar la tierra, cultivar productos andinos, criar animales o gestionar proyectos agrícolas.", tags: { agro: 3, emprendimiento: 1 } },
+                    { text: "Gestionar números, administrar negocios, liderar equipos o crear empresas innovadoras.", tags: { tecnico: 2, emprendimiento: 3 } }
+                ]
+            },
+            {
+                id: 2,
+                category: "Habilidades Prácticas",
+                question: "Cuando te enfrentas a un problema complejo, ¿cómo sueles resolverlo?",
+                options: [
+                    { text: "Analizando datos, investigando bibliografía o diseñando planes estratégicos detallados.", tags: { tecnico: 3, agro: 1 } },
+                    { text: "Usando mis manos, herramientas tangibles y arreglando lo que se rompió de inmediato.", tags: { oficio: 3, tecnico: 1 } },
+                    { text: "Buscando la belleza estética, expresando emociones mediante el arte o la música.", tags: { arte: 3, turismo: 1 } },
+                    { text: "Conversando con las personas, organizando a la comunidad y buscando acuerdos prácticos.", tags: { turismo: 2, emprendimiento: 3 } },
+                    { text: "Experimentando directamente en el campo o taller hasta encontrar un método funcional.", tags: { agro: 2, oficio: 2 } }
+                ]
+            },
+            {
+                id: 3,
+                category: "Estilo de Trabajo Ideal",
+                question: "¿Cómo te imaginas tu jornada de trabajo ideal en el Valle del Huascarán?",
+                options: [
+                    { text: "Al aire libre, recorriendo paisajes naturales, guiando visitantes o en contacto directo con la naturaleza.", tags: { turismo: 3, agro: 1 } },
+                    { text: "En un taller propio o comunal, creando obras tangibles, muebles, tejidos o productos artesanales.", tags: { arte: 3, oficio: 3 } },
+                    { text: "En oficinas modernas, laboratorios, hospitales, consultorios o instituciones académicas.", tags: { tecnico: 3 } },
+                    { text: "Administrando mi propio negocio, feria local, hospedaje rural o cafetería con identidad andina.", tags: { emprendimiento: 3, turismo: 2 } },
+                    { text: "Trabajando la tierra, optimizando cultivos de papa nativa, maíz o frutales con técnicas modernas.", tags: { agro: 3, tecnico: 1 } }
+                ]
+            },
+            {
+                id: 4,
+                category: "Pasiones y Valores",
+                question: "¿Qué aspecto de la cultura o el futuro de Ancash te gustaría más impulsar?",
+                options: [
+                    { text: "El turismo sostenible y el montañismo responsable que respete nuestros nevados y lagunas.", tags: { turismo: 3, agro: 1 } },
+                    { text: "La revalorización del arte textil milenario, la cerámica y la artesanía tradicional.", tags: { arte: 3, oficio: 1 } },
+                    { text: "La tecnificación de la agricultura y la agroindustria para exportar productos de alta calidad.", tags: { agro: 3, tecnico: 2 } },
+                    { text: "El desarrollo de la construcción civil, instalaciones eléctricas y electromecánica local.", tags: { oficio: 3, tecnico: 2 } },
+                    { text: "La creación de empresas locales independientes que generen empleo y movimiento económico.", tags: { emprendimiento: 3, tecnico: 1 } }
+                ]
+            },
+            {
+                id: 5,
+                category: "Estilo de Aprendizaje",
+                question: "Prefieres aprender nuevas habilidades mediante...",
+                options: [
+                    { text: "Estudios superiores universitarios o maestrías especializadas en ciencias, leyes o salud.", tags: { tecnico: 3 } },
+                    { text: "Institutos técnicos superiores, laboratorios prácticos y certificaciones tecnológicas.", tags: { tecnico: 2, oficio: 2 } },
+                    { text: "La práctica directa en talleres artesanales, heredando saberes de maestros experimentados.", tags: { arte: 3, oficio: 3 } },
+                    { text: "Experiencias de campo, trabajo en cooperativas agrícolas o vivencias en turismo rural.", tags: { agro: 3, turismo: 2 } },
+                    { text: "Cursos cortos de emprendimiento, finanzas, marketing digital y gestión de proyectos.", tags: { emprendimiento: 3 } }
+                ]
+            },
+            {
+                id: 6,
+                category: "Metas Personales",
+                question: "A largo plazo, ¿qué te daría mayor satisfacción profesional?",
+                options: [
+                    { text: "Ser un profesional reconocido en mi especialidad (médico, ingeniero, abogado, educador).", tags: { tecnico: 3 } },
+                    { text: "Ser un maestro artesano o técnico independiente con taller propio y alta demanda por calidad.", tags: { oficio: 3, arte: 2 } },
+                    { text: "Dirigir una agencia de turismo, hotel boutique o centro de vivencias andinas.", tags: { turismo: 3, emprendimiento: 2 } },
+                    { text: "Poseer tierras altamente productivas, granjas tecnificadas o marcas de productos agroindustriales.", tags: { agro: 3, emprendimiento: 2 } },
+                    { text: "Exhibir mis obras de arte, esculturas o textiles en galerías nacionales e internacionales.", tags: { arte: 3 } }
+                ]
+            },
+            {
+                id: 7,
+                category: "Ambiente Social",
+                question: "¿Con qué tipo de personas te sientes más cómodo colaborando?",
+                options: [
+                    { text: "Viajeros, aventureros y personas interesadas en la cultura y la naturaleza de la Cordillera Blanca.", tags: { turismo: 3 } },
+                    { text: "Artesanos, artistas plásticos y creadores con sensibilidad estética.", tags: { arte: 3, oficio: 1 } },
+                    { text: "Constructores, mecánicos, electricistas y técnicos enfocados en soluciones operativas.", tags: { oficio: 3, tecnico: 1 } },
+                    { text: "Agricultores, comuneros, ingenieros agrónomos y defensores del medio ambiente.", tags: { agro: 3 } },
+                    { text: "Inversionistas, socios comerciales, mentores de negocios y líderes gremiales.", tags: { emprendimiento: 3 } }
+                ]
+            },
+            {
+                id: 8,
+                category: "Reto Personal",
+                question: "¿Cuál consideras tu mayor fortaleza natural?",
+                options: [
+                    { text: "Resiliencia física, amor por la aventura y facilidad para los idiomas o la comunicación.", tags: { turismo: 3 } },
+                    { text: "Paciencia, detalle milimétrico y creatividad manual inagotable.", tags: { arte: 3, oficio: 2 } },
+                    { text: "Destreza con herramientas, lógica matemática y resolución rápida de fallas técnicas.", tags: { tecnico: 2, oficio: 3 } },
+                    { text: "Conexión con la tierra, sensibilidad ecológica y esfuerzo constante.", tags: { agro: 3 } },
+                    { text: "Visión comercial, persuasión, liderazgo y capacidad de asumir riesgos calculados.", tags: { emprendimiento: 3 } }
+                ]
+            }
+        ];
+
+        // Directory Database of Careers, Trades, Arts, Tourism & Agro
+        const directoryData = [
+            {
+                title: "Guía Oficial de Alta Montaña y Trekking (AGOMP / UIAGM)",
+                category: "turismo",
+                type: "Carrera Técnica / Especialización",
+                desc: "Lidera expediciones en los nevados del Huascarán y Cordillera Blanca. Requiere excelente condición física, dominio de inglés y técnicas avanzadas de rescate en alta montaña.",
+                location: "Huaraz / Yungay / Carhuaz"
+            },
+            {
+                title: "Ingeniería Agroindustrial & Agronomía Andina",
+                category: "tecnico",
+                type: "Carrera Universitaria",
+                desc: "Optimiza la producción de cultivos altoandinos (papa nativa, quinua, frutales) y lidera la transformación agroindustrial en el Callejón de Huaylas.",
+                location: "UNASAM (Huaraz)"
+            },
+            {
+                title: "Maestría Textil y Bordado Tradicional Ancashino",
+                category: "arte",
+                type: "Oficio Ancestral & Arte",
+                desc: "Creación de mantos, ponchos y textilería fina con iconografía de la cultura Chavín y costumbres del Callejón de Huaylas con tintes naturales.",
+                location: "Huari / Recuay / Caraz"
+            },
+            {
+                title: "Electromecánica y Mantenimiento de Maquinaria",
+                category: "oficio",
+                type: "Carrera Técnica",
+                desc: "Reparación y mantenimiento de equipos industriales, mineros y agrícolas. Alta demanda en talleres y proyectos de infraestructura regional.",
+                location: "IST Ancash / CETPROs"
+            },
+            {
+                title: "Gestión de Turismo Rural Comunitario y Ecolodge",
+                category: "turismo",
+                type: "Emprendimiento & Técnico",
+                desc: "Diseño y administración de experiencias turísticas vivenciales, hospedajes ecológicos y gastronomía típica para visitantes nacionales y extranjeros.",
+                location: "Valle de los Conchucos / Huascarán"
+            },
+            {
+                title: "Carpintería Fina y Ebanistería en Madera Andina",
+                category: "oficio",
+                type: "Oficio Calificado",
+                desc: "Diseño de muebles rústicos y modernos, acabados arquitectónicos de alta calidad utilizando maderas selectas de la región.",
+                location: "Caraz / Yungay"
+            },
+            {
+                title: "Enfermería Técnica y Salud Comunitaria",
+                category: "tecnico",
+                type: "Carrera Técnica",
+                desc: "Atención primaria de la salud, prevención y cuidado humanizado en postas médicas y hospitales de las provincias de Ancash.",
+                location: "Institutos Superiores de la Región"
+            },
+            {
+                title: "Producción de Vinos, Licores y Gastronomía Regional",
+                category: "agro",
+                type: "Emprendimiento & Oficio",
+                desc: "Elaboración artesanal de manjar blanco tradicional, quesos andinos madurados, macerados de fruta y cocina novoandina.",
+                location: "Caraz / Huaraz"
+            }
+        ];
+
+        // Profiles mapping
+        const profileDefinitions = {
+            turismo: {
+                title: "Explorador y Gestor de Turismo de Montaña",
+                desc: "Tu vocación late al ritmo de los nevados, lagunas y la riqueza paisajística de la Cordillera Blanca. Tienes gran potencial en turismo, montañismo y hospitalidad.",
+                tip: "Busca especializarte en guías oficiales de montaña, administración hotelera o turismo vivencial comunitario en el Callejón de Huaylas.",
+                recs: [
+                    { name: "Guía Oficial de Alta Montaña", type: "Técnico / Especialización", desc: "Lidera expediciones y expediciones de aventura con estándares internacionales." },
+                    { name: "Gestión de Turismo Rural Comunitario", type: "Emprendimiento / Técnico", desc: "Crea experiencias de hospedaje y vivencias andinas auténticas." }
+                ]
+            },
+            oficio: {
+                title: "Maestro Constructor y Técnico Especializado",
+                desc: "Tienes manos hábiles, lógica práctica y disfrutas creando o reparando cosas tangibles. Los oficios calificados son altamente valorados y rentables.",
+                tip: "Capacítate en centros CETPRO o institutos tecnológicos en electromecánica, carpintería fina o instalaciones avanzadas.",
+                recs: [
+                    { name: "Electromecánica y Mantenimiento", type: "Carrera Técnica", desc: "Alta demanda en proyectos de infraestructura, minería y talleres." },
+                    { name: "Carpintería Fina y Ebanistería", type: "Oficio Calificado", desc: "Diseño y fabricación de mobiliario exclusivo con acabados de primera." }
+                ]
+            },
+            arte: {
+                title: "Artista y Custodio del Patrimonio Cultural",
+                desc: "Tu sensibilidad artística y conexión con la identidad ancashina te orientan hacia la textilería, la plástica, el diseño o la artesanía de alta calidad.",
+                tip: "Participa en talleres de denominación de origen, ferias artesanales regionales y mercados de diseño con identidad andina.",
+                recs: [
+                    { name: "Maestría Textil y Bordado Tradicional", type: "Arte & Oficio", desc: "Creación de piezas textiles con tintes naturales e iconografía ancestral." },
+                    { name: "Artesanía y Cerámica con Identidad Chavín", type: "Arte Aplicado", desc: "Escultura y piezas utilitarias inspiradas en el patrimonio arqueológico." }
+                ]
+            },
+            agro: {
+                title: "Innovador Agroecológico y Productor del Valle",
+                desc: "Tu futuro está conectado con la tierra, la agricultura moderna, la sostenibilidad y la puesta en valor de la biodiversidad del Valle del Huascarán.",
+                tip: "Explora carreras de agronomía, agroindustria o cooperativas de producción agrícola tecnificada en Ancash.",
+                recs: [
+                    { name: "Ingeniería Agroindustrial", type: "Carrera Universitaria", desc: "Transformación y valor agregado a la papa nativa, granos y frutales." },
+                    { name: "Emprendimiento Agroecológico y Lácteos", type: "Emprendimiento Local", desc: "Producción de quesos finos, manjar blanco y cultivos orgánicos." }
+                ]
+            },
+            emprendimiento: {
+                title: "Líder Emprendedor y Gestor de Negocios Locales",
+                desc: "Tienes iniciativa, visión comercial y ganas de dinamizar la economía del Valle del Huascarán creando tus propias soluciones y empresas.",
+                tip: "Capacítate en gestión de negocios, marketing digital, finanzas y postula a fondos concursables regionales.",
+                recs: [
+                    { name: "Administración de Negocios y PyMEs", type: "Técnico / Universitario", desc: "Lidera empresas locales con visión global y eficiencia comercial." },
+                    { name: "Emprendimiento Gastronómico y de Servicios", type: "Emprendimiento", desc: "Creación de cafeterías, restaurantes típicos o servicios especializados." }
+                ]
+            },
+            tecnico: {
+                title: "Profesional Especializado y Técnico Científico",
+                desc: "Tu mente analítica busca resolver problemas complejos a través de la ciencia, la salud, la ingeniería o la educación superior.",
+                tip: "Postula a la UNASAM o institutos tecnológicos de prestigio en Huaraz y el Callejón de Huaylas.",
+                recs: [
+                    { name: "Carreras de Salud y Bienestar (Enfermería / Obstetricia)", type: "Universitario / Técnico", desc: "Atención y servicio directo a la comunidad ancashina." },
+                    { name: "Ingeniería Civil / Minas / Ambiental", type: "Carrera Universitaria", desc: "Diseño y supervisión de obras y protección ambiental en la región." }
+                ]
+            }
+        };
+
+        // Application State Controller
+        class AppController {
+            constructor() {
+                this.currentView = 'welcome';
+                this.currentQuestionIndex = 0;
+                this.userAnswers = [];
+            }
+
+            switchView(viewId) {
+                const views = ['welcome', 'quiz', 'results', 'directory', 'about'];
+                views.forEach(v => {
+                    const el = document.getElementById(`view-${v}`);
+                    if (el) {
+                        if (v === viewId) {
+                            el.classList.remove('hidden');
+                        } else {
+                            el.classList.add('hidden');
+                        }
+                    }
+                });
+                this.currentView = viewId;
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            goHome() {
+                this.switchView('welcome');
+            }
+
+            toggleMobileMenu() {
+                const menu = document.getElementById('mobile-menu');
+                const icon = document.getElementById('menu-icon');
+                menu.classList.toggle('hidden');
+                if (menu.classList.contains('hidden')) {
+                    icon.className = "fa-solid fa-bars";
+                } else {
+                    icon.className = "fa-solid fa-xmark";
+                }
+            }
+
+            startQuiz() {
+                this.currentQuestionIndex = 0;
+                this.userAnswers = new Array(quizData.length).fill(null);
+                this.switchView('quiz');
+                this.renderQuestion();
+            }
+
+            renderQuestion() {
+                const q = quizData[this.currentQuestionIndex];
+                document.getElementById('quiz-progress-text').innerText = `Pregunta ${this.currentQuestionIndex + 1} de ${quizData.length}`;
+                document.getElementById('quiz-category-badge').innerText = q.category;
+                
+                const percent = ((this.currentQuestionIndex + 1) / quizData.length) * 100;
+                document.getElementById('quiz-progress-bar').style.width = `${percent}%`;
+
+                document.getElementById('quiz-question-title').innerText = q.question;
+
+                const container = document.getElementById('quiz-options-container');
+                container.innerHTML = '';
+
+                q.options.forEach((opt, idx) => {
+                    const isSelected = this.userAnswers[this.currentQuestionIndex] === idx;
+                    const btn = document.createElement('div');
+                    btn.className = `p-4 rounded-2xl border-2 cursor-pointer transition flex items-center space-x-3 ${
+                        isSelected 
+                            ? 'border-emerald-600 bg-emerald-50/80 text-emerald-900 shadow-sm' 
+                            : 'border-slate-200 bg-white/80 hover:border-emerald-300 hover:bg-slate-50 text-slate-700'
+                    }`;
+                    btn.onclick = () => this.selectOption(idx);
+
+                    btn.innerHTML = `
+                        <div class="w-6 h-6 rounded-full border-2 flex items-center justify-center shrink-0 ${isSelected ? 'border-emerald-600 bg-emerald-600 text-white' : 'border-slate-300'}">
+                            ${isSelected ? '<i class="fa-solid fa-check text-xs"></i>' : ''}
+                        </div>
+                        <span class="text-sm sm:text-base font-medium">${opt.text}</span>
+                    `;
+                    container.appendChild(btn);
+                });
+
+                // Navigation buttons state
+                document.getElementById('quiz-btn-prev').disabled = this.currentQuestionIndex === 0;
+                const nextBtn = document.getElementById('quiz-btn-next');
+                const hasAnswered = this.userAnswers[this.currentQuestionIndex] !== null;
+                nextBtn.disabled = !hasAnswered;
+                if (this.currentQuestionIndex === quizData.length - 1) {
+                    nextBtn.innerHTML = `Ver Resultados <i class="fa-solid fa-flag-checkered ml-2"></i>`;
+                } else {
+                    nextBtn.innerHTML = `Siguiente <i class="fa-solid fa-arrow-right ml-2"></i>`;
+                }
+            }
+
+            selectOption(optionIndex) {
+                this.userAnswers[this.currentQuestionIndex] = optionIndex;
+                this.renderQuestion();
+            }
+
+            prevQuestion() {
+                if (this.currentQuestionIndex > 0) {
+                    this.currentQuestionIndex--;
+                    this.renderQuestion();
+                }
+            }
+
+            nextQuestion() {
+                if (this.userAnswers[this.currentQuestionIndex] === null) return;
+
+                if (this.currentQuestionIndex < quizData.length - 1) {
+                    this.currentQuestionIndex++;
+                    this.renderQuestion();
+                } else {
+                    this.calculateResults();
+                }
+            }
+
+            calculateResults() {
+                const scores = { turismo: 0, oficio: 0, arte: 0, agro: 0, emprendimiento: 0, tecnico: 0 };
+
+                this.userAnswers.forEach((optIdx, qIdx) => {
+                    if (optIdx !== null) {
+                        const tags = quizData[qIdx].options[optIdx].tags;
+                        for (const [key, val] of Object.entries(tags)) {
+                            if (scores[key] !== undefined) {
+                                scores[key] += val;
+                            }
+                        }
+                    }
+                });
+
+                // Find highest scoring category
+                let topCategory = 'tecnico';
+                let maxScore = -1;
+                for (const [cat, score] of Object.entries(scores)) {
+                    if (score > maxScore) {
+                        maxScore = score;
+                        topCategory = cat;
+                    }
+                }
+
+                const profile = profileDefinitions[topCategory] || profileDefinitions['tecnico'];
+
+                document.getElementById('result-profile-title').innerText = `Perfil: ${profile.title}`;
+                document.getElementById('result-profile-desc').innerText = profile.desc;
+                document.getElementById('result-local-tip').innerText = profile.tip;
+
+                const recsList = document.getElementById('result-recommendations-list');
+                recsList.innerHTML = '';
+                profile.recs.forEach(rec => {
+                    const item = document.createElement('div');
+                    item.className = 'p-3 bg-emerald-50/60 rounded-xl border border-emerald-100';
+                    item.innerHTML = `
+                        <div class="flex justify-between items-start mb-1">
+                            <h5 class="font-bold text-slate-800 text-sm">${rec.name}</h5>
+                            <span class="text-[10px] font-bold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded-md">${rec.type}</span>
+                        </div>
+                        <p class="text-xs text-slate-600">${rec.desc}</p>
+                    `;
+                    recsList.appendChild(item);
+                });
+
+                this.switchView('results');
+            }
+
+            showDirectory() {
+                this.switchView('directory');
+                this.filterDirectory('all');
+            }
+
+            filterDirectory(category) {
+                // Update filter buttons styling
+                const categories = ['all', 'tecnico', 'oficio', 'arte', 'turismo', 'agro'];
+                categories.forEach(cat => {
+                    const btn = document.getElementById(`filter-${cat}`);
+                    if (btn) {
+                        if (cat === category) {
+                            btn.className = "px-4 py-2 rounded-xl text-xs font-bold transition bg-emerald-700 text-white shadow-sm";
+                        } else {
+                            btn.className = "px-4 py-2 rounded-xl text-xs font-bold transition bg-white text-slate-700 border border-slate-200 hover:bg-slate-50";
+                        }
+                    }
+                });
+
+                const listContainer = document.getElementById('directory-list');
+                listContainer.innerHTML = '';
+
+                const filtered = category === 'all' 
+                    ? directoryData 
+                    : directoryData.filter(item => item.category === category);
+
+                filtered.forEach(item => {
+                    const card = document.createElement('div');
+                    card.className = 'bg-white/90 p-5 rounded-2xl shadow-sm border border-slate-100 flex flex-col justify-between';
+                    card.innerHTML = `
+                        <div>
+                            <div class="flex justify-between items-start mb-2">
+                                <span class="text-[10px] font-bold uppercase tracking-wider text-emerald-700 bg-emerald-100 px-2.5 py-1 rounded-md">${item.type}</span>
+                                <span class="text-xs text-slate-500"><i class="fa-solid fa-location-dot text-emerald-600 mr-1"></i>${item.location}</span>
+                            </div>
+                            <h4 class="font-bold text-slate-900 text-base mb-1">${item.title}</h4>
+                            <p class="text-xs text-slate-600 mb-4 leading-relaxed">${item.desc}</p>
+                        </div>
+                        <div class="pt-3 border-t border-slate-100 flex justify-between items-center text-xs">
+                            <span class="text-slate-500 font-medium">Colectivo Valle del Huascarán</span>
+                            <button onclick="app.startQuiz()" class="text-emerald-700 font-bold hover:underline">Evaluarme <i class="fa-solid fa-arrow-right ml-1"></i></button>
+                        </div>
+                    `;
+                    listContainer.appendChild(card);
+                });
+            }
+
+            showAbout() {
+                this.switchView('about');
+            }
+        }
+
+        // Initialize application instance
+        const app = new AppController();
+    </script>
+</body>
+</html>
