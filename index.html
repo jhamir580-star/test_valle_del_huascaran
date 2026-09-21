@@ -3,726 +3,851 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Colectivo Valle del Huascarán - Test Vocacional Integral</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>Colectivo Vocacional Valle del Huascarán</title>
+    <!-- Google Fonts & FontAwesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-                    },
-                    colors: {
-                        andean: {
-                            50: '#f0fdf4',
-                            100: '#dcfce7',
-                            500: '#22c55e',
-                            600: '#16a34a',
-                            700: '#15803d',
-                            850: '#064e3b',
-                            900: '#022c22'
-                        },
-                        terracotta: {
-                            500: '#f97316',
-                            600: '#ea580c'
-                        }
-                    }
-                }
-            }
-        }
-    </script>
     <style>
+        :root {
+            --primary: #1a365d;
+            --secondary: #008080;
+            --accent: #e53e3e;
+            --light: #f7fafc;
+            --dark: #2d3748;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background: linear-gradient(rgba(2, 44, 34, 0.75), rgba(2, 28, 22, 0.85)), url('image_3d445e.jpg') no-repeat center center fixed;
-            background-size: cover;
-            min-height: 100vh;
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
         }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.92);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+
+        /* Header & Nav */
+        header {
+            background: rgba(26, 54, 93, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
-        .glass-dark {
-            background: rgba(2, 44, 34, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
         }
-        .fade-in {
-            animation: fadeIn 0.4s ease-out forwards;
+
+        .logo-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
         }
+
+        .logo-brand i {
+            color: #319795;
+            font-size: 1.5rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #4fd1c5;
+        }
+
+        /* Hero Section con el Nevado Huascarán al fondo y filtro degradado */
+        .hero {
+            background: linear-gradient(rgba(26, 54, 93, 0.82), rgba(43, 108, 176, 0.82)), 
+                        url('https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;
+            color: white;
+            padding: 10rem 2rem 6rem 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            max-width: 750px;
+            margin: 0 auto 2rem auto;
+            color: #e2e8f0;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #319795;
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 4px 14px rgba(49, 151, 149, 0.4);
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #2c7a7b;
+            transform: translateY(-2px);
+        }
+
+        /* Section Global */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title p {
+            color: #718096;
+            font-size: 1.05rem;
+        }
+
+        /* Alianzas y Estudiantes */
+        .allies-section {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            margin-top: -3rem;
+            position: relative;
+            z-index: 10;
+            padding: 3rem 2rem;
+        }
+
+        .allies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .ally-card {
+            background: var(--light);
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 1.2rem 0.8rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .ally-card i {
+            font-size: 2.2rem;
+            color: var(--primary);
+        }
+
+        .ally-card span {
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--dark);
+        }
+
+        .ally-card:hover, .ally-card.active {
+            border-color: var(--secondary);
+            background: #e6fffa;
+            transform: translateY(-4px);
+            box-shadow: 0 8px 15px rgba(0,128,128,0.15);
+        }
+
+        .students-display-box {
+            background: #f0f4f8;
+            border-left: 5px solid var(--secondary);
+            padding: 2rem;
+            border-radius: 0 12px 12px 0;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .students-display-box h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .student-item {
+            background: white;
+            padding: 1rem;
+            margin-bottom: 0.8rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .student-name {
+            font-weight: 600;
+            color: var(--dark);
+            font-size: 0.95rem;
+        }
+
+        .student-career {
+            background: #e2e8f0;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        /* Sección de Sueldos Oficiales */
+        .salarios-container {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .salary-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background: #e2e8f0;
+            color: var(--dark);
+            border: none;
+            padding: 0.8rem 1.8rem;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn.active-tab {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 4px 12px rgba(26,54,93,0.3);
+        }
+
+        .search-filter-box {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            background: #f7fafc;
+            padding: 1rem;
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .search-filter-box input {
+            flex: 1;
+            min-width: 250px;
+            padding: 0.7rem 1rem;
+            border: 1px solid #cbd5e0;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            outline: none;
+        }
+
+        .search-filter-box input:focus {
+            border-color: var(--secondary);
+        }
+
+        .table-responsive {
+            max-height: 500px;
+            overflow-y: auto;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.9rem;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        th {
+            background: var(--primary);
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 2;
+        }
+
+        tr:hover {
+            background: #f1f5f9;
+        }
+
+        .salary-table-section {
+            display: none;
+        }
+
+        .salary-table-section.active-section {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+
+        /* Test Vocacional Section */
+        .test-container {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .question-box {
+            margin-bottom: 2rem;
+        }
+
+        .question-box h3 {
+            font-size: 1.15rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.8rem;
+        }
+
+        .option-btn {
+            background: var(--light);
+            border: 2px solid #e2e8f0;
+            padding: 1rem;
+            text-align: left;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            font-size: 0.95rem;
+        }
+
+        .option-btn:hover, .option-btn.selected {
+            background: #ebf8ff;
+            border-color: #3182ce;
+            color: #2b6cb0;
+        }
+
+        .test-results {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+            background: #f7fafc;
+            border-radius: 15px;
+            border: 2px dashed #319795;
+        }
+
+        .test-results h3 {
+            color: var(--secondary);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 2.5rem 2rem;
+            margin-top: 4rem;
+        }
+
+        footer p {
+            color: #cbd5e0;
+            font-size: 0.9rem;
+        }
+
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            nav ul { display: none; }
         }
     </style>
 </head>
-<body class="text-slate-800 flex flex-col min-h-screen">
+<body>
 
-    <header class="w-full py-4 px-6 md:px-12 flex justify-between items-center bg-black/30 backdrop-blur-md border-b border-white/10 text-white sticky top-0 z-50">
-        <div class="flex items-center space-x-3 cursor-pointer" onclick="app.goHome()">
-            <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-400 flex items-center justify-center shadow-lg">
-                <i class="fa-solid fa-mountain-sun text-white text-lg"></i>
-            </div>
-            <div>
-                <h1 class="font-bold text-lg leading-tight tracking-wide">Colectivo Valle del Huascarán</h1>
-                <p class="text-xs text-emerald-200">Test Vocacional & Oportunidades Locales</p>
-            </div>
+    <!-- Header -->
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo-brand"><i class="fa-solid fa-graduation-cap"></i> Colectivo Vocacional Valle del Huascarán</a>
+            <nav>
+                <ul>
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#aliados">Instituciones Aliadas</a></li>
+                    <li><a href="#sueldos">Sueldos Oficiales</a></li>
+                    <li><a href="#test">Test Vocacional</a></li>
+                </ul>
+            </nav>
         </div>
-        <nav class="hidden md:flex items-center space-x-6 text-sm font-medium">
-            <button onclick="app.goHome()" class="hover:text-emerald-300 transition"><i class="fa-solid fa-house mr-1"></i> Inicio</button>
-            <button onclick="app.showDirectory()" class="hover:text-emerald-300 transition"><i class="fa-solid fa-compass mr-1"></i> Carreras y Oficios</button>
-            <button onclick="app.showAbout()" class="hover:text-emerald-300 transition"><i class="fa-solid fa-circle-info mr-1"></i> Sobre el Colectivo</button>
-        </nav>
-        <button class="md:hidden text-white text-xl" onclick="app.toggleMobileMenu()">
-            <i class="fa-solid fa-bars" id="menu-icon"></i>
-        </button>
     </header>
 
-    <!-- Mobile menu drawer -->
-    <div id="mobile-menu" class="hidden fixed inset-0 z-40 bg-slate-950/90 backdrop-blur-lg flex flex-col pt-24 px-8 text-white space-y-6 text-lg font-medium">
-        <button onclick="app.goHome(); app.toggleMobileMenu();" class="text-left py-2 border-b border-white/10"><i class="fa-solid fa-house mr-3 text-emerald-400"></i> Inicio</button>
-        <button onclick="app.showDirectory(); app.toggleMobileMenu();" class="text-left py-2 border-b border-white/10"><i class="fa-solid fa-compass mr-3 text-emerald-400"></i> Carreras y Oficios</button>
-        <button onclick="app.showAbout(); app.toggleMobileMenu();" class="text-left py-2 border-b border-white/10"><i class="fa-solid fa-circle-info mr-3 text-emerald-400"></i> Sobre el Colectivo</button>
-    </div>
+    <!-- Hero Section con la temática del Nevado Huascarán -->
+    <section id="inicio" class="hero">
+        <h1>Construye tu Futuro con Propósito</h1>
+        <p>Iniciativa educativa impulsada y respaldada con orgullo por estudiantes universitarios, técnicos y miembros de las fuerzas armadas para guiar la vocación de los jóvenes del Valle del Huascarán.</p>
+        <a href="#test" class="btn">¡Comenzar Test Vocacional!</a>
+    </section>
 
-    <main class="flex-grow flex items-center justify-center p-4 sm:p-6 md:p-8 max-w-5xl mx-auto w-full">
-        
-        <!-- View 1: Welcome Screen -->
-        <div id="view-welcome" class="glass-card rounded-3xl p-6 sm:p-10 shadow-2xl w-full text-center fade-in">
-            <div class="inline-flex items-center px-4 py-1.5 rounded-full bg-emerald-100 text-emerald-800 text-xs font-semibold mb-6 shadow-sm">
-                <i class="fa-solid fa-seedling mr-2 text-emerald-600"></i> Descubre tu camino en Ancash y el Perú
+    <!-- Alianzas y Estudiantes Interactivos -->
+    <section id="aliados">
+        <div class="allies-section">
+            <div class="section-title">
+                <h2>Instituciones de Educación Superior y Fuerzas Armadas Aliadas</h2>
+                <p>Haz clic en cada institución para conocer a los estudiantes y miembros que forman parte de nuestro equipo:</p>
             </div>
-            <h2 class="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight mb-4">
-                Encuentra tu Vocación en el <span class="text-emerald-700">Valle del Huascarán</span>
-            </h2>
-            <p class="text-slate-600 text-base sm:text-lg max-w-2xl mx-auto mb-8 leading-relaxed">
-                No solo se trata de universidad o institutos. Explora tu vocación real entre carreras profesionales, oficios artesanales, turismo sostenible, agricultura moderna, arte andino y emprendimientos locales.
-            </p>
-            
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10 text-left max-w-3xl mx-auto">
-                <div class="bg-white/80 p-4 rounded-2xl shadow-sm border border-slate-100 flex items-start space-x-3">
-                    <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0">
-                        <i class="fa-solid fa-graduation-cap"></i>
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-sm text-slate-800">Profesional & Técnico</h4>
-                        <p class="text-xs text-slate-500 mt-0.5">Ingenierías, salud, educación, tecnologías y más.</p>
-                    </div>
+
+            <div class="allies-grid">
+                <div class="ally-card" onclick="showStudents('UNI')">
+                    <i class="fa-solid fa-hard-hat"></i>
+                    <span>UNI</span>
                 </div>
-                <div class="bg-white/80 p-4 rounded-2xl shadow-sm border border-slate-100 flex items-start space-x-3">
-                    <div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center shrink-0">
-                        <i class="fa-solid fa-hammer"></i>
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-sm text-slate-800">Oficios & Arte</h4>
-                        <p class="text-xs text-slate-500 mt-0.5">Textilería fina, carpintería, orfebrería y pintura.</p>
-                    </div>
+                <div class="ally-card" onclick="showStudents('UNMSM')">
+                    <i class="fa-solid fa-landmark"></i>
+                    <span>UNMSM</span>
                 </div>
-                <div class="bg-white/80 p-4 rounded-2xl shadow-sm border border-slate-100 flex items-start space-x-3">
-                    <div class="w-10 h-10 rounded-xl bg-teal-50 text-teal-600 flex items-center justify-center shrink-0">
-                        <i class="fa-solid fa-mountain"></i>
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-sm text-slate-800">Turismo & Emprendimiento</h4>
-                        <p class="text-xs text-slate-500 mt-0.5">Guías de alta montaña, agroecología y gastronomía.</p>
-                    </div>
+                <div class="ally-card" onclick="showStudents('UCS')">
+                    <i class="fa-solid fa-flask"></i>
+                    <span>Científica del Sur</span>
+                </div>
+                <div class="ally-card" onclick="showStudents('UCV')">
+                    <i class="fa-solid fa-book-open-reader"></i>
+                    <span>UCV</span>
+                </div>
+                <div class="ally-card" onclick="showStudents('UNASAM')">
+                    <i class="fa-solid fa-mountain-sun"></i>
+                    <span>UNASAM</span>
+                </div>
+                <div class="ally-card" onclick="showStudents('SENATI')">
+                    <i class="fa-solid fa-gears"></i>
+                    <span>SENATI</span>
+                </div>
+                <div class="ally-card" onclick="showStudents('FFAA')">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <span>Fuerzas Armadas</span>
                 </div>
             </div>
 
-            <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
-                <button onclick="app.startQuiz()" class="w-full sm:w-auto px-8 py-4 bg-emerald-700 hover:bg-emerald-800 text-white font-bold rounded-2xl shadow-lg hover:shadow-emerald-700/30 transition transform hover:-translate-y-0.5 flex items-center justify-center space-x-3 text-base">
-                    <span>Iniciar Test Vocacional</span>
-                    <i class="fa-solid fa-arrow-right"></i>
-                </button>
-                <button onclick="app.showDirectory()" class="w-full sm:w-auto px-8 py-4 bg-white hover:bg-slate-50 text-slate-700 font-bold rounded-2xl shadow-md border border-slate-200 transition flex items-center justify-center space-x-2 text-base">
-                    <i class="fa-solid fa-book-open text-emerald-600"></i>
-                    <span>Ver Directorio Completo</span>
-                </button>
+            <div id="students-container" class="students-display-box">
+                <h3>Selecciona una institución arriba para ver a los estudiantes representantes</h3>
+                <p style="color: #64748b; font-size: 0.95rem;">Cada tarjeta te mostrará qué jóvenes universitarios, técnicos o de las fuerzas armadas están listos para orientarte.</p>
             </div>
         </div>
+    </section>
 
-        <!-- View 2: Quiz Screen -->
-        <div id="view-quiz" class="hidden glass-card rounded-3xl p-6 sm:p-10 shadow-2xl w-full max-w-3xl fade-in">
-            <div class="flex justify-between items-center mb-6">
-                <span id="quiz-progress-text" class="text-xs font-bold uppercase tracking-wider text-emerald-700 bg-emerald-100 px-3 py-1 rounded-full">Pregunta 1 de 8</span>
-                <span id="quiz-category-badge" class="text-xs font-semibold text-slate-500 bg-slate-100 px-3 py-1 rounded-full">Habilidades e Intereses</span>
-            </div>
-            
-            <div class="w-full bg-slate-200 h-2 rounded-full mb-8 overflow-hidden">
-                <div id="quiz-progress-bar" class="bg-emerald-600 h-full transition-all duration-300" style="width: 12.5%;"></div>
-            </div>
-
-            <h3 id="quiz-question-title" class="text-xl sm:text-2xl font-bold text-slate-900 mb-6 leading-snug">
-                ¿Qué tipo de actividades disfrutas más en tu día a día o te genera mayor curiosidad?
-            </h3>
-
-            <div id="quiz-options-container" class="space-y-3 mb-8">
-                <!-- Dynamic options injected via JS -->
-            </div>
-
-            <div class="flex justify-between items-center pt-4 border-t border-slate-200">
-                <button id="quiz-btn-prev" onclick="app.prevQuestion()" class="px-5 py-2.5 rounded-xl border border-slate-300 text-slate-600 hover:bg-slate-100 font-semibold text-sm transition disabled:opacity-40 disabled:cursor-not-allowed">
-                    <i class="fa-solid fa-arrow-left mr-2"></i> Anterior
-                </button>
-                <button id="quiz-btn-next" onclick="app.nextQuestion()" class="px-6 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-semibold text-sm shadow-md transition disabled:opacity-40 disabled:cursor-not-allowed">
-                    Siguiente <i class="fa-solid fa-arrow-right ml-2"></i>
-                </button>
-            </div>
+    <!-- Sección de Sueldos Oficiales del Gobierno -->
+    <section id="sueldos">
+        <div class="section-title">
+            <h2>Observatorio de Sueldos Oficiales</h2>
+            <p>Consulta los ingresos promedio mensuales reportados por el Estado para tomar una decisión informada</p>
         </div>
 
-        <!-- View 3: Results Screen -->
-        <div id="view-results" class="hidden glass-card rounded-3xl p-6 sm:p-10 shadow-2xl w-full max-w-4xl fade-in">
-            <div class="text-center mb-8">
-                <div class="w-16 h-16 rounded-2xl bg-emerald-100 text-emerald-700 mx-auto flex items-center justify-center text-2xl mb-3 shadow-sm">
-                    <i class="fa-solid fa-award"></i>
-                </div>
-                <span class="text-xs font-bold uppercase tracking-wider text-emerald-700 bg-emerald-100 px-3 py-1 rounded-full">Tu Perfil Vocacional Ideal</span>
-                <h2 id="result-profile-title" class="text-2xl sm:text-4xl font-extrabold text-slate-900 mt-2">Perfil: Innovador del Valle y Montaña</h2>
-                <p id="result-profile-desc" class="text-slate-600 text-base max-w-2xl mx-auto mt-2">
-                    Tienes una gran afinidad por combinar la riqueza natural y cultural de la Cordillera Blanca con soluciones prácticas, técnicas o productivas.
-                </p>
+        <div class="salarios-container">
+            <div class="salary-tabs">
+                <button class="tab-btn active-tab" onclick="switchTab('tecnicas')"><i class="fa-solid fa-gears"></i> Carreras Técnicas (Institutos)</button>
+                <button class="tab-btn" onclick="switchTab('universitarias')"><i class="fa-solid fa-graduation-cap"></i> Carreras Universitarias</button>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                <div class="bg-white/90 p-6 rounded-2xl shadow-sm border border-slate-100">
-                    <h4 class="font-bold text-slate-800 text-lg mb-4 flex items-center">
-                        <i class="fa-solid fa-compass text-emerald-600 mr-2"></i> Sugerencias Principales para Ti
-                    </h4>
-                    <div id="result-recommendations-list" class="space-y-4">
-                        <!-- Injected recommendations -->
-                    </div>
+            <!-- Tabla de Técnicas -->
+            <div id="sec-tecnicas" class="salary-table-section active-section">
+                <div class="search-filter-box">
+                    <h3 style="font-size: 1.1rem; color: var(--primary);">Familias de Carreras Técnicas</h3>
+                    <input type="text" id="searchTech" onkeyup="filterTable('searchTech', 'techTable')" placeholder="🔍 Buscar carrera técnica (ej. mecanica, mineria)...">
                 </div>
+                <div class="table-responsive">
+                    <table id="techTable">
+                        <thead>
+                            <tr>
+                                <th>Ranking</th>
+                                <th>Familia de Carrera Técnica</th>
+                                <th>Ingreso Prom. (18-29 años)</th>
+                                <th>Mín. a Máx. (18-29)</th>
+                                <th>Ingreso Prom. (30+ años)</th>
+                                <th>Mín. a Máx. (30+ años)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>1</td><td>TÉCNICO EN MINERA, METALURGIA Y PETRÓLEO</td><td>S/ 6 871</td><td>S/ 1,892 - S/ 12,900</td><td>S/ 9 953</td><td>S/ 3,323 - S/ 19,439</td></tr>
+                            <tr><td>2</td><td>SUBOFICIALES DE LA POLICÍA NACIONAL</td><td>S/ 3 890</td><td>S/ 3,413 - S/ 4,396</td><td>S/ 4 111</td><td>S/ 3,446 - S/ 5,004</td></tr>
+                            <tr><td>3</td><td>HIDROGRAFÍA</td><td>S/ 3 860</td><td>S/ 3,463 - S/ 4,088</td><td>S/ 4 496</td><td>S/ 3,588 - S/ 4,704</td></tr>
+                            <tr><td>4</td><td>TÉCNICO ELECTRICISTA</td><td>S/ 3 849</td><td>S/ 1,848 - S/ 5,830</td><td>S/ 6 321</td><td>S/ 2,767 - S/ 11,613</td></tr>
+                            <tr><td>5</td><td>SUBOFICIALES DE LAS FUERZAS ARMADAS</td><td>S/ 3 810</td><td>S/ 3,463 - S/ 4,363</td><td>S/ 4 532</td><td>S/ 3,588 - S/ 4,937</td></tr>
+                            <tr><td>6</td><td>SECRETARIADO</td><td>S/ 3 700</td><td>S/ 3,463 - S/ 4,238</td><td>S/ 6 021</td><td>S/ 3,623 - S/ 9,658</td></tr>
+                            <tr><td>7</td><td>TÉCNICO INDUSTRIAL</td><td>S/ 3 544</td><td>S/ 1,564 - S/ 6,613</td><td>S/ 7 169</td><td>S/ 2,874 - S/ 11,351</td></tr>
+                            <tr><td>8</td><td>QUÍMICA</td><td>S/ 3 398</td><td>S/ 1,401 - S/ 6,686</td><td>S/ 5 060</td><td>S/ 2,166 - S/ 10,033</td></tr>
+                            <tr><td>9</td><td>MECÁNICA AUTOMOTRIZ</td><td>S/ 3 300</td><td>S/ 1,800 - S/ 5,500</td><td>S/ 6 200</td><td>S/ 2,500 - S/ 11,000</td></tr>
+                            <tr><td>10</td><td>MECATRÓNICA INDUSTRIAL</td><td>S/ 3 200</td><td>S/ 1,600 - S/ 5,800</td><td>S/ 6 500</td><td>S/ 2,800 - S/ 12,500</td></tr>
+                            <tr><td>11</td><td>CIENCIAS DE LA COMPUTACIÓN</td><td>S/ 3 272</td><td>S/ 1,313 - S/ 6,200</td><td>S/ 4 526</td><td>S/ 1,754 - S/ 8,339</td></tr>
+                            <tr><td>12</td><td>TÉCNICO DE TELECOMUNICACIONES</td><td>S/ 3 153</td><td>S/ 2,246 - S/ 4,087</td><td>S/ 3 985</td><td>S/ 2,487 - S/ 4,704</td></tr>
+                            <tr><td>13</td><td>TÉCNICO ELECTRÓNICA</td><td>S/ 3 114</td><td>S/ 1,600 - S/ 4,113</td><td>S/ 4 927</td><td>S/ 2,167 - S/ 8,876</td></tr>
+                            <tr><td>14</td><td>TÉCNICO MECÁNICA (General / Industrial)</td><td>S/ 2 964</td><td>S/ 1,989 - S/ 4,084</td><td>S/ 5 490</td><td>S/ 2,487 - S/ 10,135</td></tr>
+                            <tr><td>15</td><td>ARQUITECTURA Y URBANISMO</td><td>S/ 2 856</td><td>S/ 1,387 - S/ 4,500</td><td>S/ 5 774</td><td>S/ 2,200 - S/ 9,884</td></tr>
+                            <tr><td>16</td><td>DISEÑO</td><td>S/ 2 766</td><td>S/ 1,380 - S/ 4,800</td><td>S/ 5 673</td><td>S/ 2,000 - S/ 10,912</td></tr>
+                            <tr><td>17</td><td>EDUCACIÓN SECUNDARIA</td><td>S/ 2 684</td><td>S/ 1,300 - S/ 3,851</td><td>S/ 3 861</td><td>S/ 2,040 - S/ 5,830</td></tr>
+                            <tr><td>18</td><td>TÉCNICO CIVIL</td><td>S/ 2 656</td><td>S/ 2,200 - S/ 3,501</td><td>S/ 5 478</td><td>S/ 2,719 - S/ 9,613</td></tr>
+                            <tr><td>19</td><td>MARKETING</td><td>S/ 2 577</td><td>S/ 1,200 - S/ 4,164</td><td>S/ 6 172</td><td>S/ 1,900 - S/ 13,063</td></tr>
+                            <tr><td>20</td><td>EDUCACIÓN PRIMARIA</td><td>S/ 2 511</td><td>S/ 1,130 - S/ 3,980</td><td>S/ 3 592</td><td>S/ 1,599 - S/ 5,776</td></tr>
+                            <tr><td>21</td><td>TEXTIL Y CONFECCIONES</td><td>S/ 2 496</td><td>S/ 1,130 - S/ 4,742</td><td>S/ 4 217</td><td>S/ 1,420 - S/ 7,500</td></tr>
+                            <tr><td>22</td><td>METEOROLOGÍA</td><td>S/ 2 462</td><td>S/ 2,246 - S/ 2,787</td><td>S/ 2 553</td><td>S/ 2,288 - S/ 3,027</td></tr>
+                            <tr><td>23</td><td>ADMINISTRACIÓN DE EMPRESAS</td><td>S/ 2 455</td><td>S/ 1,313 - S/ 3,783</td><td>S/ 4 505</td><td>S/ 1,813 - S/ 7,867</td></tr>
+                            <tr><td>24</td><td>CIENCIAS DE LA COMUNICACIÓN</td><td>S/ 2 443</td><td>S/ 2,213 - S/ 2,988</td><td>S/ 5 212</td><td>S/ 2,451 - S/ 9,695</td></tr>
+                            <tr><td>25</td><td>ADMINISTRACIÓN DE SERVICIOS TURÍSTICOS, HOTELERÍA Y GASTRONOMÍA</td><td>S/ 2 443</td><td>S/ 1,310 - S/ 3,716</td><td>S/ 4 379</td><td>S/ 1,713 - S/ 7,900</td></tr>
+                            <tr><td>26</td><td>AGROPECUARIA</td><td>S/ 2 421</td><td>S/ 1,500 - S/ 3,272</td><td>S/ 3 806</td><td>S/ 1,825 - S/ 6,545</td></tr>
+                            <tr><td>27</td><td>CONTABILIDAD Y FINANZAS</td><td>S/ 2 398</td><td>S/ 1,238 - S/ 4,015</td><td>S/ 3 566</td><td>S/ 1,563 - S/ 6,052</td></tr>
+                            <tr><td>28</td><td>NEGOCIOS INTERNACIONALES</td><td>S/ 2 395</td><td>S/ 1,294 - S/ 3,956</td><td>S/ 5 231</td><td>S/ 1,864 - S/ 10,181</td></tr>
+                            <tr><td>29</td><td>MÚSICA</td><td>S/ 2 377</td><td>S/ 1,470 - S/ 2,988</td><td>S/ 3 829</td><td>S/ 2,000 - S/ 8,562</td></tr>
+                            <tr><td>30</td><td>EDUCACIÓN FÍSICA</td><td>S/ 2 343</td><td>S/ 1,254 - S/ 3,501</td><td>S/ 3 497</td><td>S/ 1,785 - S/ 4,851</td></tr>
+                            <tr><td>31</td><td>ENFERMERÍA</td><td>S/ 2 315</td><td>S/ 1,211 - S/ 3,701</td><td>S/ 3 192</td><td>S/ 1,560 - S/ 4,604</td></tr>
+                            <tr><td>32</td><td>EDUCACIÓN ARTÍSTICA</td><td>S/ 2 211</td><td>S/ 1,400 - S/ 3,301</td><td>S/ 3 598</td><td>S/ 1,733 - S/ 6,234</td></tr>
+                            <tr><td>33</td><td>EDUCACIÓN INICIAL</td><td>S/ 2 172</td><td>S/ 1,130 - S/ 3,850</td><td>S/ 3 477</td><td>S/ 1,466 - S/ 5,551</td></tr>
+                            <tr><td>34</td><td>TECNOLOGÍA MÉDICA</td><td>S/ 2 103</td><td>S/ 1,200 - S/ 3,413</td><td>S/ 2 990</td><td>S/ 1,500 - S/ 4,576</td></tr>
+                            <tr><td>35</td><td>TÉCNICO EN INDUSTRIAS ALIMENTARIAS</td><td>S/ 2 023</td><td>S/ 1,130 - S/ 2,706</td><td>S/ 3 340</td><td>S/ 1,463 - S/ 5,356</td></tr>
+                            <tr><td>36</td><td>TURISMO</td><td>S/ 1 810</td><td>S/ 1,130 - S/ 2,702</td><td>S/ 3 529</td><td>S/ 1,484 - S/ 6,186</td></tr>
+                            <tr><td>37</td><td>FARMACIA Y BIOQUÍMICA</td><td>S/ 1 715</td><td>S/ 1,130 - S/ 2,346</td><td>S/ 2 570</td><td>S/ 1,393 - S/ 3,998</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
 
-                <div class="bg-white/90 p-6 rounded-2xl shadow-sm border border-slate-100 flex flex-col justify-between">
-                    <div>
-                        <h4 class="font-bold text-slate-800 text-lg mb-4 flex items-center">
-                            <i class="fa-solid fa-lightbulb text-amber-500 mr-2"></i> Siguiente Paso en el Valle
-                        </h4>
-                        <p class="text-sm text-slate-600 mb-4 leading-relaxed">
-                            El Colectivo Valle del Huascarán conecta talentos locales con instituciones educativas técnicas, centros de capacitación artesanal, cooperativas agrarias y programas de incubación de turismo comunitario.
-                        </p>
-                        <div class="bg-emerald-50 p-4 rounded-xl border border-emerald-100 mb-4">
-                            <p class="text-xs font-semibold text-emerald-800 mb-1"><i class="fa-solid fa-location-dot mr-1"></i> Oportunidad en la región:</p>
-                            <p id="result-local-tip" class="text-xs text-emerald-900">Becas y talleres técnicos disponibles en Huaraz, Carhuaz, Yungay y Caraz.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="flex flex-col sm:flex-row gap-3 pt-4 border-t border-slate-100">
-                        <button onclick="app.startQuiz()" class="flex-1 py-3 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl text-sm transition text-center">
-                            <i class="fa-solid fa-rotate-right mr-1"></i> Repetir Test
-                        </button>
-                        <button onclick="app.showDirectory()" class="flex-1 py-3 bg-emerald-700 hover:bg-emerald-800 text-white font-bold rounded-xl text-sm shadow-md transition text-center">
-                            <i class="fa-solid fa-search mr-1"></i> Ver Directorio
-                        </button>
-                    </div>
+            <!-- Tabla de Universitarias -->
+            <div id="sec-universitarias" class="salary-table-section">
+                <div class="search-filter-box">
+                    <h3 style="font-size: 1.1rem; color: var(--primary);">Familias de Carreras Universitarias</h3>
+                    <input type="text" id="searchUni" onkeyup="filterTable('searchUni', 'uniTable')" placeholder="🔍 Buscar carrera universitaria (ej. medicina, derecho)...">
+                </div>
+                <div class="table-responsive">
+                    <table id="uniTable">
+                        <thead>
+                            <tr>
+                                <th>Ranking</th>
+                                <th>Familia de Carrera Universitaria</th>
+                                <th>Ingreso Prom. (18-29 años)</th>
+                                <th>Mín. a Máx. (18-29)</th>
+                                <th>Ingreso Prom. (30+ años)</th>
+                                <th>Mín. a Máx. (30+ años)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>1</td><td>MEDICINA</td><td>S/ 7 192</td><td>S/ 3,205 - S/ 10,043</td><td>S/ 8 472</td><td>S/ 5,000 - S/ 12,188</td></tr>
+                            <tr><td>2</td><td>ODONTOLOGÍA</td><td>S/ 4 892</td><td>S/ 1,280 - S/ 7,571</td><td>S/ 5 140</td><td>S/ 1,800 - S/ 8,523</td></tr>
+                            <tr><td>3</td><td>OBSTETRICIA</td><td>S/ 4 768</td><td>S/ 1,842 - S/ 7,288</td><td>S/ 5 408</td><td>S/ 2,727 - S/ 7,882</td></tr>
+                            <tr><td>4</td><td>INGENIERÍA DE SISTEMAS Y CÓMPUTO</td><td>S/ 4 333</td><td>S/ 1,700 - S/ 7,563</td><td>S/ 8 085</td><td>S/ 2,764 - S/ 14,113</td></tr>
+                            <tr><td>5</td><td>INGENIERÍA DE TELECOMUNICACIONES</td><td>S/ 4 236</td><td>S/ 1,800 - S/ 7,190</td><td>S/ 8 104</td><td>S/ 3,000 - S/ 14,172</td></tr>
+                            <tr><td>6</td><td>GEOLOGÍA</td><td>S/ 4 216</td><td>S/ 1,943 - S/ 6,933</td><td>S/ 10 829</td><td>S/ 3,826 - S/ 19,376</td></tr>
+                            <tr><td>7</td><td>ENFERMERÍA</td><td>S/ 4 189</td><td>S/ 1,713 - S/ 7,088</td><td>S/ 5 036</td><td>S/ 2,573 - S/ 7,838</td></tr>
+                            <tr><td>8</td><td>DERECHO</td><td>S/ 4 169</td><td>S/ 1,756 - S/ 6,955</td><td>S/ 8 635</td><td>S/ 3,165 - S/ 15,593</td></tr>
+                            <tr><td>9</td><td>INGENIERÍA MINERA, METALURGIA Y PETRÓLEO</td><td>S/ 4 118</td><td>S/ 1,729 - S/ 7,409</td><td>S/ 10 454</td><td>S/ 3,398 - S/ 18,692</td></tr>
+                            <tr><td>10</td><td>CIENCIAS DE LA COMPUTACIÓN</td><td>S/ 4 115</td><td>S/ 1,700 - S/ 7,350</td><td>S/ 8 067</td><td>S/ 2,561 - S/ 15,113</td></tr>
+                            <tr><td>11</td><td>INGENIERÍA ELÉCTRICA</td><td>S/ 4 060</td><td>S/ 1,800 - S/ 6,609</td><td>S/ 9 251</td><td>S/ 3,000 - S/ 16,610</td></tr>
+                            <tr><td>12</td><td>NUTRICIÓN</td><td>S/ 4 042</td><td>S/ 1,584 - S/ 7,113</td><td>S/ 5 261</td><td>S/ 2,454 - S/ 8,723</td></tr>
+                            <tr><td>13</td><td>INGENIERÍA MECÁNICA</td><td>S/ 4 041</td><td>S/ 1,740 - S/ 6,885</td><td>S/ 9 716</td><td>S/ 3,113 - S/ 18,113</td></tr>
+                            <tr><td>14</td><td>ECONOMÍA</td><td>S/ 4 018</td><td>S/ 1,500 - S/ 7,300</td><td>S/ 9 587</td><td>S/ 2,513 - S/ 18,449</td></tr>
+                            <tr><td>15</td><td>OFICIALES DE LA POLICÍA NACIONAL</td><td>S/ 3 986</td><td>S/ 3,413 - S/ 4,620</td><td>S/ 5 450</td><td>S/ 3,651 - S/ 7,451</td></tr>
+                            <tr><td>16</td><td>INGENIERÍA CIVIL</td><td>S/ 3 944</td><td>S/ 1,600 - S/ 6,778</td><td>S/ 9 116</td><td>S/ 3,000 - S/ 16,113</td></tr>
+                            <tr><td>17</td><td>INGENIERÍA NAVAL Y AERONÁUTICA</td><td>S/ 3 886</td><td>S/ 1,800 - S/ 6,500</td><td>S/ 7 490</td><td>S/ 3,203 - S/ 13,034</td></tr>
+                            <tr><td>18</td><td>INGENIERÍA INDUSTRIAL</td><td>S/ 3 879</td><td>S/ 1,600 - S/ 6,800</td><td>S/ 9 305</td><td>S/ 2,641 - S/ 17,970</td></tr>
+                            <tr><td>19</td><td>OTRAS CARRERAS DE ADMINISTRACIÓN</td><td>S/ 3 802</td><td>S/ 1,560 - S/ 6,500</td><td>S/ 7 623</td><td>S/ 2,333 - S/ 14,409</td></tr>
+                            <tr><td>20</td><td>ESTADÍSTICA</td><td>S/ 3 772</td><td>S/ 1,403 - S/ 6,700</td><td>S/ 7 226</td><td>S/ 2,314 - S/ 12,960</td></tr>
+                            <tr><td>21</td><td>INVESTIGACIÓN OPERATIVA</td><td>S/ 3 713</td><td>S/ 1,608 - S/ 6,232</td><td>S/ 7 228</td><td>S/ 2,617 - S/ 13,192</td></tr>
+                            <tr><td>22</td><td>INGENIERÍA ELECTRÓNICA</td><td>S/ 3 680</td><td>S/ 1,600 - S/ 6,413</td><td>S/ 8 880</td><td>S/ 2,813 - S/ 16,369</td></tr>
+                            <tr><td>23</td><td>ADMINISTRACIÓN PÚBLICA</td><td>S/ 3 570</td><td>S/ 1,359 - S/ 7,081</td><td>S/ 6 222</td><td>S/ 2,200 - S/ 11,158</td></tr>
+                            <tr><td>24</td><td>CIENCIAS POLÍTICAS</td><td>S/ 3 554</td><td>S/ 1,500 - S/ 6,042</td><td>S/ 8 511</td><td>S/ 2,709 - S/ 15,361</td></tr>
+                            <tr><td>25</td><td>AGRONEGOCIOS</td><td>S/ 3 421</td><td>S/ 1,500 - S/ 6,007</td><td>S/ 7 556</td><td>S/ 2,300 - S/ 16,678</td></tr>
+                            <tr><td>26</td><td>INGENIERÍA SANITARIA</td><td>S/ 3 398</td><td>S/ 1,560 - S/ 6,000</td><td>S/ 8 557</td><td>S/ 2,819 - S/ 15,000</td></tr>
+                            <tr><td>27</td><td>GEOGRAFÍA</td><td>S/ 3 387</td><td>S/ 1,830 - S/ 5,529</td><td>S/ 7 396</td><td>S/ 3,026 - S/ 12,264</td></tr>
+                            <tr><td>28</td><td>MARKETING</td><td>S/ 3 380</td><td>S/ 1,385 - S/ 6,099</td><td>S/ 8 564</td><td>S/ 2,065 - S/ 17,500</td></tr>
+                            <tr><td>29</td><td>IDIOMAS</td><td>S/ 3 317</td><td>S/ 1,597 - S/ 5,800</td><td>S/ 5 861</td><td>S/ 2,280 - S/ 10,713</td></tr>
+                            <tr><td>30</td><td>FARMACIA Y BIOQUÍMICA</td><td>S/ 3 244</td><td>S/ 1,316 - S/ 5,763</td><td>S/ 5 685</td><td>S/ 2,320 - S/ 9,406</td></tr>
+                            <tr><td>31</td><td>ANTROPOLOGÍA Y ARQUEOLOGÍA</td><td>S/ 3 227</td><td>S/ 1,431 - S/ 5,100</td><td>S/ 5 629</td><td>S/ 2,341 - S/ 10,000</td></tr>
+                            <tr><td>32</td><td>TECNOLOGÍA MÉDICA</td><td>S/ 3 222</td><td>S/ 1,360 - S/ 5,787</td><td>S/ 4 673</td><td>S/ 2,000 - S/ 7,713</td></tr>
+                            <tr><td>33</td><td>ADMINISTRACIÓN DE EMPRESAS</td><td>S/ 3 198</td><td>S/ 1,310 - S/ 5,800</td><td>S/ 7 726</td><td>S/ 2,014 - S/ 15,200</td></tr>
+                            <tr><td>34</td><td>OFICIALES DE LAS FUERZAS ARMADAS</td><td>S/ 3 177</td><td>S/ 2,470 - S/ 4,450</td><td>S/ 7 703</td><td>S/ 2,800 - S/ 13,925</td></tr>
+                            <tr><td>35</td><td>QUÍMICA</td><td>S/ 3 142</td><td>S/ 1,524 - S/ 5,306</td><td>S/ 7 516</td><td>S/ 2,500 - S/ 14,113</td></tr>
+                            <tr><td>36</td><td>SERVICIOS SOCIALES Y ASISTENCIALES</td><td>S/ 3 115</td><td>S/ 1,413 - S/ 5,000</td><td>S/ 6 291</td><td>S/ 2,300 - S/ 11,113</td></tr>
+                            <tr><td>37</td><td>TRABAJO SOCIAL</td><td>S/ 3 087</td><td>S/ 1,600 - S/ 4,668</td><td>S/ 5 123</td><td>S/ 2,600 - S/ 8,206</td></tr>
+                            <tr><td>38</td><td>ARQUITECTURA Y URBANISMO</td><td>S/ 3 076</td><td>S/ 1,303 - S/ 5,020</td><td>S/ 6 603</td><td>S/ 2,213 - S/ 12,000</td></tr>
+                            <tr><td>39</td><td>CIENCIAS DE LA COMUNICACIÓN</td><td>S/ 3 069</td><td>S/ 1,413 - S/ 5,164</td><td>S/ 6 742</td><td>S/ 2,064 - S/ 12,939</td></tr>
+                            <tr><td>40</td><td>AGROPECUARIA</td><td>S/ 3 064</td><td>S/ 1,500 - S/ 4,845</td><td>S/ 6 782</td><td>S/ 2,500 - S/ 12,166</td></tr>
+                            <tr><td>41</td><td>NEGOCIOS INTERNACIONALES</td><td>S/ 3 059</td><td>S/ 1,377 - S/ 5,212</td><td>S/ 6 109</td><td>S/ 2,000 - S/ 11,855</td></tr>
+                            <tr><td>42</td><td>ECOLOGÍA Y MEDIO AMBIENTE</td><td>S/ 3 030</td><td>S/ 1,500 - S/ 4,938</td><td>S/ 6 348</td><td>S/ 2,400 - S/ 11,223</td></tr>
+                            <tr><td>43</td><td>PERIODISMO Y LOCUCIÓN</td><td>S/ 3 004</td><td>S/ 1,445 - S/ 5,000</td><td>S/ 6 119</td><td>S/ 2,000 - S/ 11,579</td></tr>
+                            <tr><td>44</td><td>PSICOLOGÍA</td><td>S/ 2 989</td><td>S/ 1,300 - S/ 5,763</td><td>S/ 5 124</td><td>S/ 2,063 - S/ 8,656</td></tr>
+                            <tr><td>45</td><td>OTRAS INGENIERÍAS</td><td>S/ 2 963</td><td>S/ 1,312 - S/ 5,000</td><td>S/ 6 617</td><td>S/ 2,413 - S/ 11,594</td></tr>
+                            <tr><td>46</td><td>EDUCACIÓN ESPECIAL</td><td>S/ 2 913</td><td>S/ 1,500 - S/ 4,600</td><td>S/ 4 307</td><td>S/ 2,138 - S/ 7,635</td></tr>
+                            <tr><td>47</td><td>DISEÑO</td><td>S/ 2 903</td><td>S/ 1,500 - S/ 4,800</td><td>S/ 6 050</td><td>S/ 2,272 - S/ 10,560</td></tr>
+                            <tr><td>48</td><td>BIBLIOTECOLOGÍA Y ARCHIVO</td><td>S/ 2 896</td><td>S/ 1,713 - S/ 4,392</td><td>S/ 5 408</td><td>S/ 2,608 - S/ 9,215</td></tr>
+                            <tr><td>49</td><td>BIOLOGÍA</td><td>S/ 2 876</td><td>S/ 1,339 - S/ 5,763</td><td>S/ 5 670</td><td>S/ 2,222 - S/ 9,554</td></tr>
+                            <tr><td>50</td><td>INGENIERÍA TEXTIL Y CONFECCIONES</td><td>S/ 2 851</td><td>S/ 1,699 - S/ 4,500</td><td>S/ 5 912</td><td>S/ 2,463 - S/ 10,563</td></tr>
+                            <tr><td>51</td><td>EDUCACIÓN TECNOLÓGICA</td><td>S/ 2 830</td><td>S/ 1,130 - S/ 6,264</td><td>S/ 4 974</td><td>S/ 1,962 - S/ 9,114</td></tr>
+                            <tr><td>52</td><td>FÍSICA</td><td>S/ 2 757</td><td>S/ 1,350 - S/ 4,407</td><td>S/ 5 669</td><td>S/ 1,935 - S/ 10,350</td></tr>
+                            <tr><td>53</td><td>DISEÑO</td><td>S/ 2 755</td><td>S/ 1,300 - S/ 4,900</td><td>S/ 5 582</td><td>S/ 1,938 - S/ 10,793</td></tr>
+                            <tr><td>54</td><td>INGENIERÍA EN AGROINDUSTRIA</td><td>S/ 2 711</td><td>S/ 1,400 - S/ 4,283</td><td>S/ 5 082</td><td>S/ 2,164 - S/ 8,870</td></tr>
+                            <tr><td>55</td><td>VETERINARIA</td><td>S/ 2 669</td><td>S/ 1,130 - S/ 4,564</td><td>S/ 5 744</td><td>S/ 1,750 - S/ 10,466</td></tr>
+                            <tr><td>56</td><td>CIENCIAS FORESTALES</td><td>S/ 2 668</td><td>S/ 1,380 - S/ 4,000</td><td>S/ 6 807</td><td>S/ 2,264 - S/ 12,113</td></tr>
+                            <tr><td>57</td><td>ZOOTECNIA</td><td>S/ 2 656</td><td>S/ 1,319 - S/ 4,225</td><td>S/ 7 069</td><td>S/ 2,207 - S/ 13,605</td></tr>
+                            <tr><td>58</td><td>MATEMÁTICA</td><td>S/ 2 647</td><td>S/ 1,268 - S/ 4,550</td><td>S/ 5 115</td><td>S/ 1,709 - S/ 9,657</td></tr>
+                            <tr><td>59</td><td>CONTABILIDAD Y FINANZAS</td><td>S/ 2 618</td><td>S/ 1,243 - S/ 4,300</td><td>S/ 6 095</td><td>S/ 1,965 - S/ 11,654</td></tr>
+                            <tr><td>60</td><td>TEOLOGÍA Y FILOSOFÍA</td><td>S/ 2 603</td><td>S/ 1,380 - S/ 4,224</td><td>S/ 4 943</td><td>S/ 2,063 - S/ 7,856</td></tr>
+                            <tr><td>61</td><td>INGENIERÍA PESQUERANACIONALS/</td><td>S/ 2 572</td><td>S/ 1,483 - S/ 4,000</td><td>S/ 5 975</td><td>S/ 2,163 - S/ 10,339</td></tr>
+                            <tr><td>62</td><td>INGENIERÍA EN INDUSTRIAS ALIMENTARIAS</td><td>S/ 2 559</td><td>S/ 1,300 - S/ 4,000</td><td>S/ 6 331</td><td>S/ 2,113 - S/ 12,083</td></tr>
+                            <tr><td>63</td><td>ARTES</td><td>S/ 2 503</td><td>S/ 1,350 - S/ 3,902</td><td>S/ 5 639</td><td>S/ 1,800 - S/ 10,359</td></tr>
+                            <tr><td>64</td><td>MARKETING</td><td>S/ 2 481</td><td>S/ 1,200 - S/ 4,162</td><td>S/ 6 128</td><td>S/ 1,900 - S/ 12,800</td></tr>
+                            <tr><td>65</td><td>ADMINISTRACIÓN DE SERVICIOS TURÍSTICOS, HOTELERÍA Y GASTRONOMÍA</td><td>S/ 2 471</td><td>S/ 1,204 - S/ 4,000</td><td>S/ 4 600</td><td>S/ 1,692 - S/ 8,500</td></tr>
+                            <tr><td>66</td><td>EDUCACIÓN SECUNDARIA</td><td>S/ 2 469</td><td>S/ 1,216 - S/ 3,701</td><td>S/ 3 961</td><td>S/ 1,900 - S/ 6,430</td></tr>
+                            <tr><td>67</td><td>EDUCACIÓN PRIMARIA</td><td>S/ 2 462</td><td>S/ 1,200 - S/ 3,801</td><td>S/ 3 754</td><td>S/ 1,900 - S/ 6,076</td></tr>
+                            <tr><td>68</td><td>LINGÜÍSTICA Y LITERATURA</td><td>S/ 2 431</td><td>S/ 1,200 - S/ 4,043</td><td>S/ 5 177</td><td>S/ 1,600 - S/ 9,379</td></tr>
+                            <tr><td>69</td><td>HISTORIA</td><td>S/ 2 405</td><td>S/ 1,300 - S/ 3,633</td><td>S/ 5 282</td><td>S/ 2,030 - S/ 9,310</td></tr>
+                            <tr><td>70</td><td>CONTABILIDAD Y FINANZAS</td><td>S/ 2 352</td><td>S/ 1,200 - S/ 3,948</td><td>S/ 3 520</td><td>S/ 1,544 - S/ 5,937</td></tr>
+                            <tr><td>71</td><td>EDUCACIÓN FÍSICA</td><td>S/ 2 322</td><td>S/ 1,200 - S/ 3,440</td><td>S/ 3 792</td><td>S/ 1,713 - S/ 6,271</td></tr>
+                            <tr><td>72</td><td>OTRAS CARRERAS DE EDUCACIÓN</td><td>S/ 2 224</td><td>S/ 1,200 - S/ 3,401</td><td>S/ 4 000</td><td>S/ 1,814 - S/ 6,531</td></tr>
+                            <tr><td>73</td><td>EDUCACIÓN INICIAL</td><td>S/ 2 222</td><td>S/ 1,131 - S/ 3,501</td><td>S/ 3 235</td><td>S/ 1,467 - S/ 5,306</td></tr>
+                            <tr><td>74</td><td>EDUCACIÓN ARTÍSTICA</td><td>S/ 2 035</td><td>S/ 1,281 - S/ 3,000</td><td>S/ 3 482</td><td>S/ 1,600 - S/ 6,026</td></tr>
+                            <tr><td>75</td><td>TECNOLOGÍA MÉDICA</td><td>S/ 2 024</td><td>S/ 1,200 - S/ 3,270</td><td>S/ 2 950</td><td>S/ 1,493 - S/ 4,515</td></tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
+    </section>
 
-        <!-- View 4: Directory & Exploration Screen -->
-        <div id="view-directory" class="hidden glass-card rounded-3xl p-6 sm:p-10 shadow-2xl w-full max-w-4xl fade-in">
-            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
-                <div>
-                    <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">Directorio de Opciones Vocacionales</h2>
-                    <p class="text-slate-600 text-sm mt-1">Explora carreras, oficios, arte, turismo y emprendimiento en el Valle del Huascarán.</p>
-                </div>
-                <button onclick="app.goHome()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-xl text-sm transition">
-                    <i class="fa-solid fa-arrow-left mr-1"></i> Volver al Inicio
-                </button>
-            </div>
-
-            <!-- Filter Tabs -->
-            <div class="flex flex-wrap gap-2 mb-6 pb-4 border-b border-slate-200">
-                <button onclick="app.filterDirectory('all')" id="filter-all" class="px-4 py-2 rounded-xl text-xs font-bold transition bg-emerald-700 text-white shadow-sm">Todos</button>
-                <button onclick="app.filterDirectory('tecnico')" id="filter-tecnico" class="px-4 py-2 rounded-xl text-xs font-bold transition bg-white text-slate-700 border border-slate-200 hover:bg-slate-50">Técnicos & Universitarios</button>
-                <button onclick="app.filterDirectory('oficio')" id="filter-oficio" class="px-4 py-2 rounded-xl text-xs font-bold transition bg-white text-slate-700 border border-slate-200 hover:bg-slate-50">Oficios & Construcción</button>
-                <button onclick="app.filterDirectory('arte')" id="filter-arte" class="px-4 py-2 rounded-xl text-xs font-bold transition bg-white text-slate-700 border border-slate-200 hover:bg-slate-50">Arte & Textilería</button>
-                <button onclick="app.filterDirectory('turismo')" id="filter-turismo" class="px-4 py-2 rounded-xl text-xs font-bold transition bg-white text-slate-700 border border-slate-200 hover:bg-slate-50">Turismo & Montaña</button>
-                <button onclick="app.filterDirectory('agro')" id="filter-agro" class="px-4 py-2 rounded-xl text-xs font-bold transition bg-white text-slate-700 border border-slate-200 hover:bg-slate-50">Agricultura & Emprendimiento</button>
-            </div>
-
-            <div id="directory-list" class="grid grid-cols-1 md:grid-cols-2 gap-4 max-h-[500px] overflow-y-auto pr-2">
-                <!-- Injected via JS -->
-            </div>
+    <!-- Test Vocacional -->
+    <section id="test">
+        <div class="section-title">
+            <h2>Test Vocacional Interactivo</h2>
+            <p>Descubre qué área profesional se alinea mejor con tus talentos e intereses</p>
         </div>
 
-        <!-- View 5: About Screen -->
-        <div id="view-about" class="hidden glass-card rounded-3xl p-6 sm:p-10 shadow-2xl w-full max-w-3xl fade-in">
-            <div class="text-center mb-6">
-                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">Sobre el Colectivo Valle del Huascarán</h2>
-                <p class="text-emerald-700 font-semibold text-sm mt-1">Impulsando el talento y la identidad territorial de Ancash</p>
-            </div>
-            
-            <div class="space-y-4 text-slate-600 text-sm sm:text-base leading-relaxed mb-8">
-                <p>
-                    El <strong>Colectivo Valle del Huascarán</strong> nace con la convicción de que el desarrollo regional no solo depende de carreras universitarias tradicionales, sino de reconocer, revalorizar y potenciar la inmensa diversidad de saberes, oficios, artes y vocaciones que dan vida a nuestra tierra.
-                </p>
-                <p>
-                    Desde guías oficiales de alta montaña y expertos en agricultura andina sostenible, hasta maestros artesanos textiles, carpinteros, emprendedores gastronómicos, técnicos electromecánicos y profesionales de la salud o educación. Cada vocación es un pilar fundamental para nuestra comunidad.
-                </p>
-                <div class="bg-emerald-50 p-5 rounded-2xl border border-emerald-100 flex items-center space-x-4 mt-6">
-                    <div class="w-12 h-12 rounded-xl bg-emerald-600 text-white flex items-center justify-center text-xl shrink-0">
-                        <i class="fa-solid fa-hands-holding-child"></i>
+        <div class="test-container">
+            <div id="quiz-form">
+                <div class="question-box">
+                    <h3>1. ¿Qué actividad disfrutas más en tu tiempo libre?</h3>
+                    <div class="options-grid">
+                        <button class="option-btn" onclick="selectOption(this, 1, 'ingenieria')">Resolver problemas lógicos, calcular estructuras o analizar datos numéricos.</button>
+                        <button class="option-btn" onclick="selectOption(this, 1, 'salud')">Investigar cómo funciona el cuerpo humano, ayudar o cuidar la salud de los demás.</button>
+                        <button class="option-btn" onclick="selectOption(this, 1, 'sociales')">Debatir sobre leyes, defender los derechos humanos o entender la sociedad y los negocios.</button>
+                        <button class="option-btn" onclick="selectOption(this, 1, 'tecnica')">Armar, reparar aparatos, ensamblar sistemas mecánicos o trabajar con maquinaria.</button>
                     </div>
-                    <div>
-                        <h4 class="font-bold text-slate-800 text-sm">Nuestro Propósito</h4>
-                        <p class="text-xs text-slate-600 mt-0.5">Guiar a las nuevas generaciones hacia su realización personal y productiva, conectando sus pasiones con las oportunidades reales del Callejón de Huaylas y Ancash.</p>
+                </div>
+
+                <div class="question-box">
+                    <h3>2. ¿Cuál de los siguientes entornos te genera mayor motivación para trabajar?</h3>
+                    <div class="options-grid">
+                        <button class="option-btn" onclick="selectOption(this, 2, 'ingenieria')">Un proyecto de construcción, una mina, una central de tecnología o proyectos geológicos.</button>
+                        <button class="option-btn" onclick="selectOption(this, 2, 'salud')">Un hospital, laboratorio clínico, posta médica o centro de investigación científica.</button>
+                        <button class="option-btn" onclick="selectOption(this, 2, 'sociales')">Una oficina de gestión internacional, instituciones públicas, juzgados o empresas corporativas.</button>
+                        <button class="option-btn" onclick="selectOption(this, 2, 'tecnica')">Un taller automotriz de alta precisión, industrias de manufactura o plantas operativas.</button>
                     </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 2rem;">
+                    <button class="btn" onclick="calculateResult()">Ver Mis Resultados Vocacionales</button>
                 </div>
             </div>
 
-            <div class="text-center">
-                <button onclick="app.goHome()" class="px-6 py-3 bg-emerald-700 hover:bg-emerald-800 text-white font-bold rounded-xl text-sm transition shadow-md">
-                    <i class="fa-solid fa-arrow-left mr-2"></i> Regresar al Inicio
-                </button>
+            <!-- Resultados del Test -->
+            <div id="test-results" class="test-results">
+                <h3>¡Resultado Calculado con Éxito!</h3>
+                <p id="result-description" style="font-size: 1.1rem; color: var(--dark); margin-bottom: 1.5rem;"></p>
+                <button class="btn" onclick="resetTest()">Volver a Intentar el Test</button>
             </div>
         </div>
+    </section>
 
-    </main>
-
-    <footer class="w-full py-4 text-center text-white/70 text-xs bg-black/40 backdrop-blur-md border-t border-white/10 mt-auto">
-        <p>© 2026 Colectivo Valle del Huascarán · Ancash, Perú. Todos los derechos reservados.</p>
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 Colectivo Vocacional Valle del Huascarán. Comprometidos con el desarrollo educativo de nuestra juventud.</p>
     </footer>
 
+    <!-- JavaScript para interactividad -->
     <script>
-        // Quiz Questions Database spanning professional, technical, arts, trades, agriculture, and tourism
-        const quizData = [
-            {
-                id: 1,
-                category: "Entorno e Intereses",
-                question: "¿Cuál de estos espacios o actividades te genera mayor entusiasmo y conexión?",
-                options: [
-                    { text: "Explorar montañas, glaciares, lagunas y liderar grupos de caminata o aventura.", tags: { turismo: 3, tecnico: 1 } },
-                    { text: "Diseñar, construir o reparar estructuras, maquinaria o herramientas mecánicas.", tags: { oficio: 3, tecnico: 2 } },
-                    { text: "Crear piezas artísticas, tejidos tradicionales, pinturas o manualidades con identidad.", tags: { arte: 3, emprendimiento: 1 } },
-                    { text: "Investigar la tierra, cultivar productos andinos, criar animales o gestionar proyectos agrícolas.", tags: { agro: 3, emprendimiento: 1 } },
-                    { text: "Gestionar números, administrar negocios, liderar equipos o crear empresas innovadoras.", tags: { tecnico: 2, emprendimiento: 3 } }
-                ]
-            },
-            {
-                id: 2,
-                category: "Habilidades Prácticas",
-                question: "Cuando te enfrentas a un problema complejo, ¿cómo sueles resolverlo?",
-                options: [
-                    { text: "Analizando datos, investigando bibliografía o diseñando planes estratégicos detallados.", tags: { tecnico: 3, agro: 1 } },
-                    { text: "Usando mis manos, herramientas tangibles y arreglando lo que se rompió de inmediato.", tags: { oficio: 3, tecnico: 1 } },
-                    { text: "Buscando la belleza estética, expresando emociones mediante el arte o la música.", tags: { arte: 3, turismo: 1 } },
-                    { text: "Conversando con las personas, organizando a la comunidad y buscando acuerdos prácticos.", tags: { turismo: 2, emprendimiento: 3 } },
-                    { text: "Experimentando directamente en el campo o taller hasta encontrar un método funcional.", tags: { agro: 2, oficio: 2 } }
-                ]
-            },
-            {
-                id: 3,
-                category: "Estilo de Trabajo Ideal",
-                question: "¿Cómo te imaginas tu jornada de trabajo ideal en el Valle del Huascarán?",
-                options: [
-                    { text: "Al aire libre, recorriendo paisajes naturales, guiando visitantes o en contacto directo con la naturaleza.", tags: { turismo: 3, agro: 1 } },
-                    { text: "En un taller propio o comunal, creando obras tangibles, muebles, tejidos o productos artesanales.", tags: { arte: 3, oficio: 3 } },
-                    { text: "En oficinas modernas, laboratorios, hospitales, consultorios o instituciones académicas.", tags: { tecnico: 3 } },
-                    { text: "Administrando mi propio negocio, feria local, hospedaje rural o cafetería con identidad andina.", tags: { emprendimiento: 3, turismo: 2 } },
-                    { text: "Trabajando la tierra, optimizando cultivos de papa nativa, maíz o frutales con técnicas modernas.", tags: { agro: 3, tecnico: 1 } }
-                ]
-            },
-            {
-                id: 4,
-                category: "Pasiones y Valores",
-                question: "¿Qué aspecto de la cultura o el futuro de Ancash te gustaría más impulsar?",
-                options: [
-                    { text: "El turismo sostenible y el montañismo responsable que respete nuestros nevados y lagunas.", tags: { turismo: 3, agro: 1 } },
-                    { text: "La revalorización del arte textil milenario, la cerámica y la artesanía tradicional.", tags: { arte: 3, oficio: 1 } },
-                    { text: "La tecnificación de la agricultura y la agroindustria para exportar productos de alta calidad.", tags: { agro: 3, tecnico: 2 } },
-                    { text: "El desarrollo de la construcción civil, instalaciones eléctricas y electromecánica local.", tags: { oficio: 3, tecnico: 2 } },
-                    { text: "La creación de empresas locales independientes que generen empleo y movimiento económico.", tags: { emprendimiento: 3, tecnico: 1 } }
-                ]
-            },
-            {
-                id: 5,
-                category: "Estilo de Aprendizaje",
-                question: "Prefieres aprender nuevas habilidades mediante...",
-                options: [
-                    { text: "Estudios superiores universitarios o maestrías especializadas en ciencias, leyes o salud.", tags: { tecnico: 3 } },
-                    { text: "Institutos técnicos superiores, laboratorios prácticos y certificaciones tecnológicas.", tags: { tecnico: 2, oficio: 2 } },
-                    { text: "La práctica directa en talleres artesanales, heredando saberes de maestros experimentados.", tags: { arte: 3, oficio: 3 } },
-                    { text: "Experiencias de campo, trabajo en cooperativas agrícolas o vivencias en turismo rural.", tags: { agro: 3, turismo: 2 } },
-                    { text: "Cursos cortos de emprendimiento, finanzas, marketing digital y gestión de proyectos.", tags: { emprendimiento: 3 } }
-                ]
-            },
-            {
-                id: 6,
-                category: "Metas Personales",
-                question: "A largo plazo, ¿qué te daría mayor satisfacción profesional?",
-                options: [
-                    { text: "Ser un profesional reconocido en mi especialidad (médico, ingeniero, abogado, educador).", tags: { tecnico: 3 } },
-                    { text: "Ser un maestro artesano o técnico independiente con taller propio y alta demanda por calidad.", tags: { oficio: 3, arte: 2 } },
-                    { text: "Dirigir una agencia de turismo, hotel boutique o centro de vivencias andinas.", tags: { turismo: 3, emprendimiento: 2 } },
-                    { text: "Poseer tierras altamente productivas, granjas tecnificadas o marcas de productos agroindustriales.", tags: { agro: 3, emprendimiento: 2 } },
-                    { text: "Exhibir mis obras de arte, esculturas o textiles en galerías nacionales e internacionales.", tags: { arte: 3 } }
-                ]
-            },
-            {
-                id: 7,
-                category: "Ambiente Social",
-                question: "¿Con qué tipo de personas te sientes más cómodo colaborando?",
-                options: [
-                    { text: "Viajeros, aventureros y personas interesadas en la cultura y la naturaleza de la Cordillera Blanca.", tags: { turismo: 3 } },
-                    { text: "Artesanos, artistas plásticos y creadores con sensibilidad estética.", tags: { arte: 3, oficio: 1 } },
-                    { text: "Constructores, mecánicos, electricistas y técnicos enfocados en soluciones operativas.", tags: { oficio: 3, tecnico: 1 } },
-                    { text: "Agricultores, comuneros, ingenieros agrónomos y defensores del medio ambiente.", tags: { agro: 3 } },
-                    { text: "Inversionistas, socios comerciales, mentores de negocios y líderes gremiales.", tags: { emprendimiento: 3 } }
-                ]
-            },
-            {
-                id: 8,
-                category: "Reto Personal",
-                question: "¿Cuál consideras tu mayor fortaleza natural?",
-                options: [
-                    { text: "Resiliencia física, amor por la aventura y facilidad para los idiomas o la comunicación.", tags: { turismo: 3 } },
-                    { text: "Paciencia, detalle milimétrico y creatividad manual inagotable.", tags: { arte: 3, oficio: 2 } },
-                    { text: "Destreza con herramientas, lógica matemática y resolución rápida de fallas técnicas.", tags: { tecnico: 2, oficio: 3 } },
-                    { text: "Conexión con la tierra, sensibilidad ecológica y esfuerzo constante.", tags: { agro: 3 } },
-                    { text: "Visión comercial, persuasión, liderazgo y capacidad de asumir riesgos calculados.", tags: { emprendimiento: 3 } }
-                ]
-            }
-        ];
-
-        // Directory Database of Careers, Trades, Arts, Tourism & Agro
-        const directoryData = [
-            {
-                title: "Guía Oficial de Alta Montaña y Trekking (AGOMP / UIAGM)",
-                category: "turismo",
-                type: "Carrera Técnica / Especialización",
-                desc: "Lidera expediciones en los nevados del Huascarán y Cordillera Blanca. Requiere excelente condición física, dominio de inglés y técnicas avanzadas de rescate en alta montaña.",
-                location: "Huaraz / Yungay / Carhuaz"
-            },
-            {
-                title: "Ingeniería Agroindustrial & Agronomía Andina",
-                category: "tecnico",
-                type: "Carrera Universitaria",
-                desc: "Optimiza la producción de cultivos altoandinos (papa nativa, quinua, frutales) y lidera la transformación agroindustrial en el Callejón de Huaylas.",
-                location: "UNASAM (Huaraz)"
-            },
-            {
-                title: "Maestría Textil y Bordado Tradicional Ancashino",
-                category: "arte",
-                type: "Oficio Ancestral & Arte",
-                desc: "Creación de mantos, ponchos y textilería fina con iconografía de la cultura Chavín y costumbres del Callejón de Huaylas con tintes naturales.",
-                location: "Huari / Recuay / Caraz"
-            },
-            {
-                title: "Electromecánica y Mantenimiento de Maquinaria",
-                category: "oficio",
-                type: "Carrera Técnica",
-                desc: "Reparación y mantenimiento de equipos industriales, mineros y agrícolas. Alta demanda en talleres y proyectos de infraestructura regional.",
-                location: "IST Ancash / CETPROs"
-            },
-            {
-                title: "Gestión de Turismo Rural Comunitario y Ecolodge",
-                category: "turismo",
-                type: "Emprendimiento & Técnico",
-                desc: "Diseño y administración de experiencias turísticas vivenciales, hospedajes ecológicos y gastronomía típica para visitantes nacionales y extranjeros.",
-                location: "Valle de los Conchucos / Huascarán"
-            },
-            {
-                title: "Carpintería Fina y Ebanistería en Madera Andina",
-                category: "oficio",
-                type: "Oficio Calificado",
-                desc: "Diseño de muebles rústicos y modernos, acabados arquitectónicos de alta calidad utilizando maderas selectas de la región.",
-                location: "Caraz / Yungay"
-            },
-            {
-                title: "Enfermería Técnica y Salud Comunitaria",
-                category: "tecnico",
-                type: "Carrera Técnica",
-                desc: "Atención primaria de la salud, prevención y cuidado humanizado en postas médicas y hospitales de las provincias de Ancash.",
-                location: "Institutos Superiores de la Región"
-            },
-            {
-                title: "Producción de Vinos, Licores y Gastronomía Regional",
-                category: "agro",
-                type: "Emprendimiento & Oficio",
-                desc: "Elaboración artesanal de manjar blanco tradicional, quesos andinos madurados, macerados de fruta y cocina novoandina.",
-                location: "Caraz / Huaraz"
-            }
-        ];
-
-        // Profiles mapping
-        const profileDefinitions = {
-            turismo: {
-                title: "Explorador y Gestor de Turismo de Montaña",
-                desc: "Tu vocación late al ritmo de los nevados, lagunas y la riqueza paisajística de la Cordillera Blanca. Tienes gran potencial en turismo, montañismo y hospitalidad.",
-                tip: "Busca especializarte en guías oficiales de montaña, administración hotelera o turismo vivencial comunitario en el Callejón de Huaylas.",
-                recs: [
-                    { name: "Guía Oficial de Alta Montaña", type: "Técnico / Especialización", desc: "Lidera expediciones y expediciones de aventura con estándares internacionales." },
-                    { name: "Gestión de Turismo Rural Comunitario", type: "Emprendimiento / Técnico", desc: "Crea experiencias de hospedaje y vivencias andinas auténticas." }
-                ]
-            },
-            oficio: {
-                title: "Maestro Constructor y Técnico Especializado",
-                desc: "Tienes manos hábiles, lógica práctica y disfrutas creando o reparando cosas tangibles. Los oficios calificados son altamente valorados y rentables.",
-                tip: "Capacítate en centros CETPRO o institutos tecnológicos en electromecánica, carpintería fina o instalaciones avanzadas.",
-                recs: [
-                    { name: "Electromecánica y Mantenimiento", type: "Carrera Técnica", desc: "Alta demanda en proyectos de infraestructura, minería y talleres." },
-                    { name: "Carpintería Fina y Ebanistería", type: "Oficio Calificado", desc: "Diseño y fabricación de mobiliario exclusivo con acabados de primera." }
-                ]
-            },
-            arte: {
-                title: "Artista y Custodio del Patrimonio Cultural",
-                desc: "Tu sensibilidad artística y conexión con la identidad ancashina te orientan hacia la textilería, la plástica, el diseño o la artesanía de alta calidad.",
-                tip: "Participa en talleres de denominación de origen, ferias artesanales regionales y mercados de diseño con identidad andina.",
-                recs: [
-                    { name: "Maestría Textil y Bordado Tradicional", type: "Arte & Oficio", desc: "Creación de piezas textiles con tintes naturales e iconografía ancestral." },
-                    { name: "Artesanía y Cerámica con Identidad Chavín", type: "Arte Aplicado", desc: "Escultura y piezas utilitarias inspiradas en el patrimonio arqueológico." }
-                ]
-            },
-            agro: {
-                title: "Innovador Agroecológico y Productor del Valle",
-                desc: "Tu futuro está conectado con la tierra, la agricultura moderna, la sostenibilidad y la puesta en valor de la biodiversidad del Valle del Huascarán.",
-                tip: "Explora carreras de agronomía, agroindustria o cooperativas de producción agrícola tecnificada en Ancash.",
-                recs: [
-                    { name: "Ingeniería Agroindustrial", type: "Carrera Universitaria", desc: "Transformación y valor agregado a la papa nativa, granos y frutales." },
-                    { name: "Emprendimiento Agroecológico y Lácteos", type: "Emprendimiento Local", desc: "Producción de quesos finos, manjar blanco y cultivos orgánicos." }
-                ]
-            },
-            emprendimiento: {
-                title: "Líder Emprendedor y Gestor de Negocios Locales",
-                desc: "Tienes iniciativa, visión comercial y ganas de dinamizar la economía del Valle del Huascarán creando tus propias soluciones y empresas.",
-                tip: "Capacítate en gestión de negocios, marketing digital, finanzas y postula a fondos concursables regionales.",
-                recs: [
-                    { name: "Administración de Negocios y PyMEs", type: "Técnico / Universitario", desc: "Lidera empresas locales con visión global y eficiencia comercial." },
-                    { name: "Emprendimiento Gastronómico y de Servicios", type: "Emprendimiento", desc: "Creación de cafeterías, restaurantes típicos o servicios especializados." }
-                ]
-            },
-            tecnico: {
-                title: "Profesional Especializado y Técnico Científico",
-                desc: "Tu mente analítica busca resolver problemas complejos a través de la ciencia, la salud, la ingeniería o la educación superior.",
-                tip: "Postula a la UNASAM o institutos tecnológicos de prestigio en Huaraz y el Callejón de Huaylas.",
-                recs: [
-                    { name: "Carreras de Salud y Bienestar (Enfermería / Obstetricia)", type: "Universitario / Técnico", desc: "Atención y servicio directo a la comunidad ancashina." },
-                    { name: "Ingeniería Civil / Minas / Ambiental", type: "Carrera Universitaria", desc: "Diseño y supervisión de obras y protección ambiental en la región." }
-                ]
-            }
+        const institutionStudents = {
+            'UNI': [
+                { name: 'Garay Salazar Wido Gabriel', career: 'Estudiante de Ingeniería Geológica' }
+            ],
+            'UNMSM': [
+                { name: 'Huerta Mendez Sosimo Gaudencio', career: 'Estudiante de Negocios Internacionales' }
+            ],
+            'UCS': [
+                { name: 'Sena Flores Yomira Sheylet', career: 'Estudiante de Medicina Humana' }
+            ],
+            'UCV': [
+                { name: 'Huaromo Huacanca Soledad Rosalinda', career: 'Estudiante de Psicología' }
+            ],
+            'UNASAM': [
+                { name: 'Soriano Gonzalez Klim Jhamir', career: 'Estudiante de Ingeniería de Minas' },
+                { name: 'Garcia Espinoza Milagros Gimena', career: 'Estudiante de Derecho y Ciencias Políticas' }
+            ],
+            'SENATI': [
+                { name: 'Benito Benito Dany Janynyn', career: 'Mecánica de Automotores Diésel' }
+            ],
+            'FFAA': [
+                { name: 'Franclin Shocush', career: 'Miembro activo de las Fuerzas Armadas' }
+            ]
         };
 
-        // Application State Controller
-        class AppController {
-            constructor() {
-                this.currentView = 'welcome';
-                this.currentQuestionIndex = 0;
-                this.userAnswers = [];
-            }
+        function showStudents(instKey) {
+            document.querySelectorAll('.ally-card').forEach(card => card.classList.remove('active'));
+            event.currentTarget.classList.add('active');
 
-            switchView(viewId) {
-                const views = ['welcome', 'quiz', 'results', 'directory', 'about'];
-                views.forEach(v => {
-                    const el = document.getElementById(`view-${v}`);
-                    if (el) {
-                        if (v === viewId) {
-                            el.classList.remove('hidden');
-                        } else {
-                            el.classList.add('hidden');
-                        }
-                    }
-                });
-                this.currentView = viewId;
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
+            const container = document.getElementById('students-container');
+            const data = institutionStudents[instKey];
 
-            goHome() {
-                this.switchView('welcome');
-            }
+            let html = `<h3>Estudiantes y Representantes de ${instKey}:</h3>`;
+            data.forEach(student => {
+                html += `
+                    <div class="student-item">
+                        <span class="student-name"><i class="fa-solid fa-user-graduate" style="color: #008080; margin-right: 8px;"></i>${student.name}</span>
+                        <span class="student-career">${student.career}</span>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+        }
 
-            toggleMobileMenu() {
-                const menu = document.getElementById('mobile-menu');
-                const icon = document.getElementById('menu-icon');
-                menu.classList.toggle('hidden');
-                if (menu.classList.contains('hidden')) {
-                    icon.className = "fa-solid fa-bars";
-                } else {
-                    icon.className = "fa-solid fa-xmark";
-                }
-            }
+        // Control de pestañas de sueldos
+        function switchTab(type) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active-tab'));
+            document.querySelectorAll('.salary-table-section').forEach(sec => sec.classList.remove('active-section'));
 
-            startQuiz() {
-                this.currentQuestionIndex = 0;
-                this.userAnswers = new Array(quizData.length).fill(null);
-                this.switchView('quiz');
-                this.renderQuestion();
-            }
-
-            renderQuestion() {
-                const q = quizData[this.currentQuestionIndex];
-                document.getElementById('quiz-progress-text').innerText = `Pregunta ${this.currentQuestionIndex + 1} de ${quizData.length}`;
-                document.getElementById('quiz-category-badge').innerText = q.category;
-                
-                const percent = ((this.currentQuestionIndex + 1) / quizData.length) * 100;
-                document.getElementById('quiz-progress-bar').style.width = `${percent}%`;
-
-                document.getElementById('quiz-question-title').innerText = q.question;
-
-                const container = document.getElementById('quiz-options-container');
-                container.innerHTML = '';
-
-                q.options.forEach((opt, idx) => {
-                    const isSelected = this.userAnswers[this.currentQuestionIndex] === idx;
-                    const btn = document.createElement('div');
-                    btn.className = `p-4 rounded-2xl border-2 cursor-pointer transition flex items-center space-x-3 ${
-                        isSelected 
-                            ? 'border-emerald-600 bg-emerald-50/80 text-emerald-900 shadow-sm' 
-                            : 'border-slate-200 bg-white/80 hover:border-emerald-300 hover:bg-slate-50 text-slate-700'
-                    }`;
-                    btn.onclick = () => this.selectOption(idx);
-
-                    btn.innerHTML = `
-                        <div class="w-6 h-6 rounded-full border-2 flex items-center justify-center shrink-0 ${isSelected ? 'border-emerald-600 bg-emerald-600 text-white' : 'border-slate-300'}">
-                            ${isSelected ? '<i class="fa-solid fa-check text-xs"></i>' : ''}
-                        </div>
-                        <span class="text-sm sm:text-base font-medium">${opt.text}</span>
-                    `;
-                    container.appendChild(btn);
-                });
-
-                // Navigation buttons state
-                document.getElementById('quiz-btn-prev').disabled = this.currentQuestionIndex === 0;
-                const nextBtn = document.getElementById('quiz-btn-next');
-                const hasAnswered = this.userAnswers[this.currentQuestionIndex] !== null;
-                nextBtn.disabled = !hasAnswered;
-                if (this.currentQuestionIndex === quizData.length - 1) {
-                    nextBtn.innerHTML = `Ver Resultados <i class="fa-solid fa-flag-checkered ml-2"></i>`;
-                } else {
-                    nextBtn.innerHTML = `Siguiente <i class="fa-solid fa-arrow-right ml-2"></i>`;
-                }
-            }
-
-            selectOption(optionIndex) {
-                this.userAnswers[this.currentQuestionIndex] = optionIndex;
-                this.renderQuestion();
-            }
-
-            prevQuestion() {
-                if (this.currentQuestionIndex > 0) {
-                    this.currentQuestionIndex--;
-                    this.renderQuestion();
-                }
-            }
-
-            nextQuestion() {
-                if (this.userAnswers[this.currentQuestionIndex] === null) return;
-
-                if (this.currentQuestionIndex < quizData.length - 1) {
-                    this.currentQuestionIndex++;
-                    this.renderQuestion();
-                } else {
-                    this.calculateResults();
-                }
-            }
-
-            calculateResults() {
-                const scores = { turismo: 0, oficio: 0, arte: 0, agro: 0, emprendimiento: 0, tecnico: 0 };
-
-                this.userAnswers.forEach((optIdx, qIdx) => {
-                    if (optIdx !== null) {
-                        const tags = quizData[qIdx].options[optIdx].tags;
-                        for (const [key, val] of Object.entries(tags)) {
-                            if (scores[key] !== undefined) {
-                                scores[key] += val;
-                            }
-                        }
-                    }
-                });
-
-                // Find highest scoring category
-                let topCategory = 'tecnico';
-                let maxScore = -1;
-                for (const [cat, score] of Object.entries(scores)) {
-                    if (score > maxScore) {
-                        maxScore = score;
-                        topCategory = cat;
-                    }
-                }
-
-                const profile = profileDefinitions[topCategory] || profileDefinitions['tecnico'];
-
-                document.getElementById('result-profile-title').innerText = `Perfil: ${profile.title}`;
-                document.getElementById('result-profile-desc').innerText = profile.desc;
-                document.getElementById('result-local-tip').innerText = profile.tip;
-
-                const recsList = document.getElementById('result-recommendations-list');
-                recsList.innerHTML = '';
-                profile.recs.forEach(rec => {
-                    const item = document.createElement('div');
-                    item.className = 'p-3 bg-emerald-50/60 rounded-xl border border-emerald-100';
-                    item.innerHTML = `
-                        <div class="flex justify-between items-start mb-1">
-                            <h5 class="font-bold text-slate-800 text-sm">${rec.name}</h5>
-                            <span class="text-[10px] font-bold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded-md">${rec.type}</span>
-                        </div>
-                        <p class="text-xs text-slate-600">${rec.desc}</p>
-                    `;
-                    recsList.appendChild(item);
-                });
-
-                this.switchView('results');
-            }
-
-            showDirectory() {
-                this.switchView('directory');
-                this.filterDirectory('all');
-            }
-
-            filterDirectory(category) {
-                // Update filter buttons styling
-                const categories = ['all', 'tecnico', 'oficio', 'arte', 'turismo', 'agro'];
-                categories.forEach(cat => {
-                    const btn = document.getElementById(`filter-${cat}`);
-                    if (btn) {
-                        if (cat === category) {
-                            btn.className = "px-4 py-2 rounded-xl text-xs font-bold transition bg-emerald-700 text-white shadow-sm";
-                        } else {
-                            btn.className = "px-4 py-2 rounded-xl text-xs font-bold transition bg-white text-slate-700 border border-slate-200 hover:bg-slate-50";
-                        }
-                    }
-                });
-
-                const listContainer = document.getElementById('directory-list');
-                listContainer.innerHTML = '';
-
-                const filtered = category === 'all' 
-                    ? directoryData 
-                    : directoryData.filter(item => item.category === category);
-
-                filtered.forEach(item => {
-                    const card = document.createElement('div');
-                    card.className = 'bg-white/90 p-5 rounded-2xl shadow-sm border border-slate-100 flex flex-col justify-between';
-                    card.innerHTML = `
-                        <div>
-                            <div class="flex justify-between items-start mb-2">
-                                <span class="text-[10px] font-bold uppercase tracking-wider text-emerald-700 bg-emerald-100 px-2.5 py-1 rounded-md">${item.type}</span>
-                                <span class="text-xs text-slate-500"><i class="fa-solid fa-location-dot text-emerald-600 mr-1"></i>${item.location}</span>
-                            </div>
-                            <h4 class="font-bold text-slate-900 text-base mb-1">${item.title}</h4>
-                            <p class="text-xs text-slate-600 mb-4 leading-relaxed">${item.desc}</p>
-                        </div>
-                        <div class="pt-3 border-t border-slate-100 flex justify-between items-center text-xs">
-                            <span class="text-slate-500 font-medium">Colectivo Valle del Huascarán</span>
-                            <button onclick="app.startQuiz()" class="text-emerald-700 font-bold hover:underline">Evaluarme <i class="fa-solid fa-arrow-right ml-1"></i></button>
-                        </div>
-                    `;
-                    listContainer.appendChild(card);
-                });
-            }
-
-            showAbout() {
-                this.switchView('about');
+            if (type === 'tecnicas') {
+                event.currentTarget.classList.add('active-tab');
+                document.getElementById('sec-tecnicas').classList.add('active-section');
+            } else {
+                event.currentTarget.classList.add('active-tab');
+                document.getElementById('sec-universitarias').classList.add('active-section');
             }
         }
 
-        // Initialize application instance
-        const app = new AppController();
+        // Buscador dinámico inteligente (ignora tildes y mayúsculas/minúsculas)
+        function normalizeText(text) {
+            return text.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toUpperCase();
+        }
+
+        function filterTable(inputId, tableId) {
+            let input = document.getElementById(inputId);
+            let filter = normalizeText(input.value);
+            let table = document.getElementById(tableId);
+            let tr = table.getElementsByTagName('tr');
+
+            for (let i = 1; i < tr.length; i++) {
+                let td = tr[i].getElementsByTagName('td')[1]; // Columna de nombre de carrera
+                if (td) {
+                    let txtValue = normalizeText(td.textContent || td.innerText);
+                    if (txtValue.indexOf(filter) > -1) {
+                        tr[i].style.display = '';
+                    } else {
+                        tr[i].style.display = 'none';
+                    }
+                }
+            }
+        }
+
+        // Lógica del Test Vocacional
+        let userAnswers = {};
+
+        function selectOption(button, questionNum, category) {
+            const parentBox = button.parentElement;
+            parentBox.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('selected'));
+            
+            button.classList.add('selected');
+            userAnswers[questionNum] = category;
+        }
+
+        function calculateResult() {
+            if (Object.keys(userAnswers).length < 2) {
+                alert('Por favor responde todas las preguntas del test para ver tu resultado.');
+                return;
+            }
+
+            let counts = {};
+            for (let q in userAnswers) {
+                let cat = userAnswers[q];
+                counts[cat] = (counts[cat] || 0) + 1;
+            }
+
+            let bestCategory = Object.keys(counts).reduce((a, b) => counts[a] > counts[b] ? a : b);
+
+            let resultText = "";
+            if (bestCategory === 'ingenieria') {
+                resultText = "Tienes un perfil orientado hacia la **Ingeniería, Ciencias de la Tierra y análisis exactos**. ¡Carreras como Ingeniería de Minas, Ingeniería Geológica o de Sistemas son ideales para ti!";
+            } else if (bestCategory === 'salud') {
+                resultText = "Tu vocación se inclina fuertemente hacia las **Ciencias de la Salud y el cuidado humano**. ¡Carreras como Medicina Humana o Psicología te permitirán impactar positivamente la vida de las personas!";
+            } else if (bestCategory === 'sociales') {
+                resultText = "Destacas en áreas de **Ciencias Sociales, Leyes y Negocios**. ¡Carreras como Derecho y Ciencias Políticas o Negocios Internacionales van perfectas con tus habilidades de liderazgo y argumentación!";
+            } else {
+                resultText = "Posees una inclinación innata hacia la **Tecnología Aplicada y carreras técnicas especializadas**. ¡Programas como Mecánica de Automotores Diésel u otras ramas industriales te abrirán grandes puertas prácticas!";
+            }
+
+            document.getElementById('quiz-form').style.display = 'none';
+            document.getElementById('test-results').style.display = 'block';
+            document.getElementById('result-description').innerHTML = resultText;
+        }
+
+        function resetTest() {
+            userAnswers = {};
+            document.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('selected'));
+            document.getElementById('test-results').style.display = 'none';
+            document.getElementById('quiz-form').style.display = 'block';
+        }
     </script>
 </body>
 </html>
