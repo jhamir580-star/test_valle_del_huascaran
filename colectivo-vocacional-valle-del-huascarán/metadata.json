@@ -1,0 +1,6 @@
+{
+  "name": "Colectivo Vocacional Valle del Huascarán",
+  "description": "Caminos de Éxito: Orientación vocacional impulsada por estudiantes y miembros de las fuerzas armadas para jóvenes del Valle del Huascarán.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
